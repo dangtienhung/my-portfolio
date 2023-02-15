@@ -26,7 +26,7 @@ const Education = () => {
         <div class="transition-all duration-1000 bg-white p-1 rounded-sm">
           <h2 class='ac-header text-base font-medium p-3 bg-gray-200 transition-all duration-300 rounded-sm cursor-pointer flex justify-between items-center'>
             <p>Lorem ipsum dolor sit amet.</p>
-            <img src="/public/assets/images/exam-unscreen.gif" alt="" class='h-6 w-6 object-cover'/>
+            <img src="/assets/images/exam-unscreen.gif" alt="" class='h-6 w-6 object-cover'/>
           </h2>
           <div class="ac-panel hidden transition-all duration-1000 mt-1 -translate-y-10">
             <p class="border p-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum amet magnam aliquid eaque excepturi illum, ipsum impedit illo assumenda minima corrupti vitae, quaerat doloribus! Quaerat numquam exercitationem iste temporibus optio?</p>
@@ -35,7 +35,7 @@ const Education = () => {
         <div class="transition-all duration-700 bg-white p-1 rounded-sm">
           <h2 class='ac-header text-base font-medium p-3 bg-gray-200 transition-all duration-300 rounded-sm cursor-pointer flex justify-between items-center'>
             <p>Lorem ipsum dolor sit amet.</p>
-            <img src="/public/assets/images/exam-unscreen.gif" alt="" class='h-6 w-6 object-cover'/>
+            <img src="/assets/images/exam-unscreen.gif" alt="" class='h-6 w-6 object-cover'/>
           </h2>
           <div class="ac-panel hidden transition-all duration-1000 mt-1 -translate-y-10">
             <p class="border p-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum amet magnam aliquid eaque excepturi illum, ipsum impedit illo assumenda minima corrupti vitae, quaerat doloribus! Quaerat numquam exercitationem iste temporibus optio?</p>
@@ -44,7 +44,7 @@ const Education = () => {
         <div class="transition-all duration-500 bg-white p-1 rounded-sm">
           <h2 class='ac-header text-base font-medium p-3 bg-gray-200 transition-all duration-300 rounded-sm cursor-pointer flex justify-between items-center'>
             <p>Lorem ipsum dolor sit amet.</p>
-            <img src="/public/assets/images/exam-unscreen.gif" alt="" class='h-6 w-6 object-cover'/>
+            <img src="/assets/images/exam-unscreen.gif" alt="" class='h-6 w-6 object-cover'/>
           </h2>
           <div class="ac-panel hidden transition-all duration-1000 mt-1 -translate-y-10">
             <p class="border p-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum amet magnam aliquid eaque excepturi illum, ipsum impedit illo assumenda minima corrupti vitae, quaerat doloribus! Quaerat numquam exercitationem iste temporibus optio?</p>

@@ -43,13 +43,13 @@ const AboutUs = () => {
       <div class="xl:mt-16 mt-12 grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-12">
         <div class='ct-about-skill !border-b-blue-600'>
           <a href="/skills" className="inline-block">
-            <img src="/public/assets/images/idea.gif" alt="" class='h-10 w-10'/>
+            <img src="/assets/images/idea.gif" alt="" class='h-10 w-10'/>
             <p class='font-semibold my-4'>Web Design</p>
           </a>
         </div>
         <div class='ct-about-skill !border-b-red-600'>
           <a href="/skills" className="inline-block">
-            <img src="/public/assets/images/monitor.gif" alt="" class='h-10 w-10'/>
+            <img src="/assets/images/monitor.gif" alt="" class='h-10 w-10'/>
             <p class='font-semibold my-4'>UI/UX Design</p>
           </a>
         </div>

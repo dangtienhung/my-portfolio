@@ -6,3 +6,5 @@ export { default as Education } from './layouts/education/Education';
 export { default as SkillLayout } from './layouts/skill/SkillLayout';
 export { default as ExperienceLayout } from './layouts/experience/ExperienceLayout';
 export { default as ContactLayout } from './layouts/contact/ContactLayout';
+export { default as AsideAdmin } from './aside/admin/AsideAdmin';
+export { default as Navigation } from './aside/admin/Navigation';

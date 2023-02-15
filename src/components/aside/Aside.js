@@ -32,7 +32,7 @@ const Aside = () => {
 			<div class='overflow-y-auto h-screen -mr-4 pr-4'>
 				<section class='flex flex-col items-center justify-around h-[284px] mt-4'>
 					<img
-						src="/public/assets/images/my.jpg"
+						src="/assets/images/my.jpg"
 						alt=""
 						class='h-40 w-40 object-cover rounded-full'/>
 					<div class='text-center capitalize'>

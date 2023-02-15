@@ -44,7 +44,7 @@ const HomeLayout = () => {
       <div class="select-none">
         <div class='grid lg:grid-cols-1 xl:grid-cols-2 xl:gap-x-14'>
           <div></div>
-          <img src="/public/assets/images/zalo1-removebg.png"
+          <img src="/assets/images/zalo1-removebg.png"
             alt=""
             class='w-full h-screen object-cover'
           />
@@ -70,7 +70,7 @@ const HomeLayout = () => {
             <button class="download-cv onscrool-text duration-700 -translate-x-[150%] rounded-sm uppercase mt-12 max-w-[180px] border border-white p-2 flex justify-center items-center gap-x-2 bg-white text-black lg:opacity-30 hover:opacity-100 transition">
               <span>download cv</span>
               <img
-                src="./assets/images/download.gif"
+                src="/assets/images/download.gif"
                 alt=""
                 class="h-6 w-6 object-cover"
               />
