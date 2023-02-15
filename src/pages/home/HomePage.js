@@ -1,5 +1,12 @@
+import { Aside, MainLayout } from '../../components';
+
 const HomePage = () => {
-	return /* html */ `<div>HomePage</div>`;
+	return /* html */ `
+    <div class='flex justify-between bg-lightMode'>
+      ${Aside()}
+      ${MainLayout()}
+    </div>
+  `;
 };
 
 export default HomePage;
