@@ -28,7 +28,7 @@ const AboutUs = () => {
 		loop();
 	});
 	return /* html */ `
-    <section class='px-[4%] py-20 min-h-screen '>
+    <section class='px-[4%] py-20 min-h-screen' id='about'>
       <h4 class="uppercase text-sm text-gray-400 transition-all duration-500">About us</h4>
       <h2 class='uppercase text-3xl font-medium mt-8 transition-all duration-700'>who am i?</h2>
       <div class='mt-20'>

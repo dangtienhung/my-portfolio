@@ -8,3 +8,4 @@ export { default as ExperienceLayout } from './layouts/experience/ExperienceLayo
 export { default as ContactLayout } from './layouts/contact/ContactLayout';
 export { default as AsideAdmin } from './aside/admin/AsideAdmin';
 export { default as Navigation } from './aside/admin/Navigation';
+export { default as ProjectLayout } from './layouts/project/ProjectLayout';

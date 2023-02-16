@@ -7,20 +7,6 @@ import SkillLayout from '../layouts/skill/SkillLayout';
 import { useEffect } from '../../config/config';
 
 const MainLayout = () => {
-	useEffect(() => {
-		/* download cv */
-		// const downloadCv = document.querySelector('.download-cv');
-		// downloadCv.addEventListener('click', (e) => {
-		// 	e.preventDefault();
-		// 	const link = document.createElement('a');
-		// 	link.href = '/public/cv/Lab8.pdf';
-		// 	link.download = 'Lap8.pdf';
-		// 	document.body.appendChild(link);
-		// 	link.click();
-		// 	document.body.remove(link);
-		// 	router.navigate('/');
-		// });
-	});
 	return /* html */ `
     <div class='flex-1 bg-white'>
       <div class="h-screen xl:overflow-y-scroll">

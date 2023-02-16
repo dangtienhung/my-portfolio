@@ -39,7 +39,7 @@ const HomeLayout = () => {
 		loop();
 	});
 	return /* html */ `
-  <section class='w-full relative slider-item duration-1000 transition-all'>
+  <section class='w-full relative slider-item duration-1000 transition-all' id='home'>
     <div class="slider-main" style='transition: transform 0.25s linear;'>
       <div class="select-none">
         <div class='grid lg:grid-cols-1 xl:grid-cols-2 xl:gap-x-14'>
@@ -67,14 +67,14 @@ const HomeLayout = () => {
               </p>
             </h2>
             <span class='onscrool-text text-sm mt-4 whitespace-normal transition-all duration-1000 -translate-x-[150%]'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur illum praesentium porro?</span>
-            <button class="download-cv onscrool-text duration-700 -translate-x-[150%] rounded-sm uppercase mt-12 max-w-[180px] border border-white p-2 flex justify-center items-center gap-x-2 bg-white text-black lg:opacity-30 hover:opacity-100 transition">
+            <a href='/assets/cv/Lap8.pdf' download class="download-cv onscrool-text duration-700 -translate-x-[150%] rounded-sm uppercase mt-12 max-w-[180px] border border-white p-2 flex justify-center items-center gap-x-2 bg-white text-black lg:opacity-30 hover:opacity-100 transition">
               <span>download cv</span>
               <img
                 src="/assets/images/download.gif"
                 alt=""
                 class="h-6 w-6 object-cover"
               />
-            </button>
+            </a>
             </div>
         </section>
       </div>

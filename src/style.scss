@@ -28,6 +28,7 @@
 
 	html {
 		font-family: 'Open Sans', sans-serif;
+		scroll-behavior: smooth;
 	}
 
 	*::-webkit-scrollbar {
@@ -52,7 +53,7 @@
 		}
 	}
 	.ct-header-link {
-		@apply p-2 inline-block uppercase text-base hover:text-white rounded-sm hover:bg-blue-500 focus:bg-blue-400 w-full transition-all duration-200;
+		@apply p-2 inline-block uppercase text-base hover:text-white rounded-sm hover:bg-blue-400 focus:bg-blue-400 focus:text-white w-full transition-all duration-200;
 	}
 
 	.test::before {

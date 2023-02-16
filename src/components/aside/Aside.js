@@ -1,14 +1,16 @@
+import { useEffect } from '../../config/config';
+
 const links = [
 	{
-		name: 'Home',
+		name: 'home',
 		to: '/',
 	},
 	{
-		name: 'About',
+		name: 'about',
 		to: '/about',
 	},
 	{
-		name: 'Education',
+		name: 'education',
 		to: '/education',
 	},
 	{
@@ -16,16 +18,30 @@ const links = [
 		to: '/skills',
 	},
 	{
-		name: 'EXPERIENCE',
+		name: 'experience',
 		to: '/experience',
 	},
 	{
-		name: 'Contact',
+		name: 'contact',
 		to: '/contact',
 	},
 ];
 
 const Aside = () => {
+	// useEffect(() => {
+	// 	const navLinks = document.querySelector('.nav__links');
+	// 	navLinks.addEventListener('click', (e) => {
+	// 		e.preventDefault();
+	// 		if (e.target.classList.contains('nav__link')) {
+	// 			const id = e.target.getAttribute('href');
+	// 			document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+	// 			console.log(
+	// 				'🚀 ~ file: Aside.js:38 ~ navLinks.addEventListener ~ document.querySelector(id)',
+	// 				document.querySelector(id)
+	// 			);
+	// 		}
+	// 	});
+	// });
 	return /* html */ `
   <div class='w-full max-w-[300px] hidden lg:block'>
 		<div class='w-full px-4 bg-lightMode min-h-screen'>
@@ -41,14 +57,14 @@ const Aside = () => {
 					</div>
 				</section>
 				<nav class='mt-4'>
-					<ul class='text-center'>
+					<ul class='text-center nav__links'>
 						${
 							links &&
 							links.length > 0 &&
 							links
 								.map(
 									(link) => /* html */ `
-								<li><a href="${link.to}" class='ct-header-link'>${link.name}</a></li>
+								<li><a href="${link.to}" id='${link.name}' class='nav__link ct-header-link'>${link.name}</a></li>
 						`
 								)
 								.join('')
@@ -90,7 +106,7 @@ const Aside = () => {
 					links
 						.map(
 							(link) => /* html */ `
-						<li><a href="${link.to}" class='ct-header-link'>${link.name}</a></li>
+						<li><a href="#${link.to}" class='ct-header-link'>${link.name}</a></li>
 				`
 						)
 						.join('')
