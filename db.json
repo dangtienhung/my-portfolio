@@ -35,5 +35,43 @@
       "linkWebsite": "abc.com",
       "id": 5
     }
+  ],
+  "user": [
+    {
+      "email": "hung@gmail.com",
+      "password": "dangtienhung",
+      "createdAt": "2023-02-16T03:50:46.208Z",
+      "id": 1
+    },
+    {
+      "email": "dangtienhung@gmail.com",
+      "password": "abcabc",
+      "createdAt": "2023-02-16T04:07:48.784Z",
+      "id": 2
+    },
+    {
+      "email": "danghung24@gmail.com",
+      "password": "123445",
+      "createdAt": "2023-02-16T04:12:21.334Z",
+      "id": 3
+    },
+    {
+      "email": "ahihi@gmail.com",
+      "password": "dangtienhung",
+      "createdAt": "2023-02-16T04:24:10.468Z",
+      "id": 4
+    },
+    {
+      "email": "abc@email.con",
+      "password": "232323",
+      "createdAt": "2023-02-16T04:26:06.327Z",
+      "id": 5
+    },
+    {
+      "email": "abcbac@gmail.com",
+      "password": "abcabc",
+      "createdAt": "2023-02-16T04:26:56.504Z",
+      "id": 6
+    }
   ]
 }

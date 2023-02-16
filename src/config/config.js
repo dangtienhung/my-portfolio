@@ -1,6 +1,6 @@
 import Navigo from 'navigo';
 
-const router = new Navigo('/', { linksSelector: 'a' });
+const router = new Navigo('/');
 
 let effects = [];
 let currentEffectOrder = 0;

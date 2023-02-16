@@ -1,12 +1,23 @@
-import { router, useEffect } from '../../../config/config';
+import { router, useEffect, useState } from '../../../config/config';
 
 const Navigation = () => {
-	// useEffect(() => {
-	// 	const btnAddNew = document.querySelector('.btn-add-new');
-	// 	btnAddNew.addEventListener('click', () => {
-	// 		router.navigate('/admin/project/add-new');
-	// 	});
-	// });
+	const [info, setInfo] = useState([]);
+	useEffect(() => {
+		const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+		if (userInfo === null || userInfo === undefined) {
+			router.navigate('/admin/sign-in');
+		} else {
+			setInfo(userInfo);
+		}
+	}, []);
+	useEffect(() => {
+		const logout = document.querySelector('.logout');
+		logout.addEventListener('click', (e) => {
+			localStorage.setItem('userInfo', JSON.stringify({}));
+			router.navigate('/admin/sign-in');
+		});
+	});
+	console.log('🚀 ~ file: Navigation.js:5 ~ Navigation ~ info', info);
 	return /* html */ `
     <div class='fixed top-0 right-0 left-0 shadow-md p-6 bg-white flex justify-between items-center z-50'>
       <button><a href="/" class='bg-blue-400 outline-none py-3 px-8 text-white capitalize rounded'>Về trang chủ</a></button>

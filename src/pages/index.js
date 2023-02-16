@@ -5,3 +5,5 @@ export { default as ProjectAdminPage } from './admin/projects/ProjectAdminPage';
 export { default as ProjectAddPage } from './admin/projects/ProjectAddPage';
 export { default as ProjectEditPage } from './admin/projects/ProjectEditPage';
 export { default as Project } from './project/Project';
+export { default as SignUpPage } from './admin/SignUp/SignUpPage';
+export { default as SignInPage } from './admin/SignIn/SignInPage';
