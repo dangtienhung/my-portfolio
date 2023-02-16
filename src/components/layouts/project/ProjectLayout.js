@@ -17,10 +17,6 @@ const ProjectLayout = (params) => {
 			}
 		})();
 	}, []);
-	console.log(
-		'🚀 ~ file: ProjectLayout.js:10 ~ ProjectLayout ~ project',
-		project
-	);
 
 	return /* html */ `
     <div class='flex-1 bg-white'>

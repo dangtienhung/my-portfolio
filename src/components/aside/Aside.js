@@ -67,6 +67,18 @@ const Aside = () => {
 		window.onscroll = loop;
 		loop();
 	});
+	useEffect(() => {
+		const OpenModal = document.querySelector('.btn-modal');
+		console.log('🚀 ~ file: Aside.js:72 ~ useEffect ~ OpenModal', OpenModal);
+		const ModalOverlay = document.querySelector('.modal-overlay');
+		const CloseModal = document.querySelector('.btn-close');
+		const handleToggle = () => {
+			OpenModal.classList.toggle('active');
+		};
+		CloseModal?.addEventListener('click', handleToggle);
+		OpenModal?.addEventListener('click', handleToggle);
+		ModalOverlay?.addEventListener('click', handleToggle);
+	}, []);
 	return /* html */ `
   <div class='w-full max-w-[300px] hidden lg:block'>
 		<div class='w-full px-4 bg-lightMode min-h-screen'>
@@ -93,7 +105,6 @@ const Aside = () => {
                   <a
                     href="${link.to}"
                     id='${link.name}' class='nav__link ct-header-link'
-                    data-navigo
                   >
                     ${link.name}
                   </a>
@@ -107,6 +118,7 @@ const Aside = () => {
 			</div>
 		</div>
 	</div>
+
 	<div class="btn-modal !z-[1000] fixed bg-white top-4 right-4 rounded-sm hover:bg-gray-800 hover:opacity-50 xl:hidden">
 		<div class='p-2 bg-gray-200'>
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
@@ -115,37 +127,39 @@ const Aside = () => {
 		</div>
 	</div>
 	<div class="modal-overlay hidden bg-black z-50 inset-0 fixed opacity-40 transition-all duration-500 animate-aside-load"></div>
-	<div class="modal-active hidden fixed top-0 right-0 bottom-0 z-50 bg-white w-full max-w-xs p-[4%] transition-all duration-700 animate-aside-load">
-		<div class='btn-close absolute top-2 right-2 rounded-sm'>
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-			</svg>
-		</div>
-		<section class='flex flex-col items-center justify-around h-[284px] mt-4'>
-			<img
-				src="/public/assets/images/my.jpg"
-				alt=""
-				class='h-40 w-40 object-cover rounded-full'/>
-			<div class='text-center capitalize'>
-				<h2 class='text-black capitalize text-2xl'>Đặng tiến hưng</h2>
-				<h4 class='text-blue-400 italic text-sm mt-2'>Front end developer</h4>
-			</div>
-		</section>
-		<nav class='mt-4'>
-			<ul class='text-center'>
-				${
-					links &&
-					links.length > 0 &&
-					links
-						.map(
-							(link) => /* html */ `
-						<li><a href="#${link.to}" class='ct-header-link'>${link.name}</a></li>
-				`
-						)
-						.join('')
-				}
-			</ul>
-		</nav>
+	<div class="modal-active hidden h-screen overflow-y-scroll fixed top-0 right-0 bottom-0 z-50 bg-white w-full max-w-xs p-[4%] transition-all duration-700 animate-aside-load">
+		<div class="w-full min-h-screen">
+      <div class='btn-close absolute top-2 right-2 rounded-sm'>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </div>
+      <section class='flex flex-col items-center justify-around h-[284px] mt-4'>
+        <img
+          src="/assets/images/my.jpg"
+          alt=""
+          class='h-40 w-40 object-cover rounded-full'/>
+        <div class='text-center capitalize'>
+          <h2 class='text-black capitalize text-2xl'>Đặng tiến hưng</h2>
+          <h4 class='text-blue-400 italic text-sm mt-2'>Front end developer</h4>
+        </div>
+      </section>
+      <nav class='mt-4'>
+        <ul class='text-center'>
+          ${
+						links &&
+						links.length > 0 &&
+						links
+							.map(
+								(link) => /* html */ `
+              <li><a href="${link.to}" class='ct-header-link'>${link.name}</a></li>
+          `
+							)
+							.join('')
+					}
+        </ul>
+      </nav>
+    </div>
 	</div>
   `;
 };

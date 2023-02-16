@@ -73,6 +73,7 @@ const ProjectEditLayout = (params) => {
 						position: 'top-center',
 						backgroundColor: 'rgb(59 130 246)',
 					}).showToast();
+					window.location = '/admin/projects';
 				} catch (error) {
 					console.log(error);
 				}
@@ -81,7 +82,7 @@ const ProjectEditLayout = (params) => {
 	});
 	return /* html */ `
     <div class='flex-1 p-4 bg-lightMode rounded-lg shadow-lg overflow-hidden'>
-      <h1 class="text-2xl font-semibold mb-10">Thêm dự án mới</h1>
+      <h1 class="text-2xl font-semibold mb-10">Sửa dự án: ${project?.nameProject}</h1>
       <form autocomplete='off' id='form'>
         <div class="grid grid-cols-2 gap-x-4">
           <div class='flex flex-col mb-5'>

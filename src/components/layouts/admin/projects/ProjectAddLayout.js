@@ -37,21 +37,26 @@ const ProjectAddLayout = () => {
 				fileUrl,
 				linkWebsite,
 			};
+			console.log(
+				'🚀 ~ file: ProjectAddLayout.js:30 ~ form.addEventListener ~ data',
+				data
+			);
 			(async () => {
 				try {
 					await addProject(data);
-					router.navigate('/admin/projects');
+					// router.navigate('/admin/projects');
+					window.location = '/admin/projects';
 				} catch (error) {
 					console.log(error);
 				}
 			})();
 		});
-	}, []);
+	});
 	return /* html */ `
     <div class='flex-1 p-4 bg-lightMode rounded-lg shadow-lg overflow-hidden'>
       <h1 class="text-2xl font-semibold mb-10">Thêm dự án mới</h1>
       <form autocomplete='off' id='form'>
-        <div class="grid grid-cols-2 gap-x-4">
+        <div class="grid xl:grid-cols-2 grid-cols-1 gap-x-4">
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>Tên dự án</label>
             <input
@@ -101,7 +106,7 @@ const ProjectAddLayout = () => {
             />
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-x-4">
+        <div class="grid xl:grid-cols-2 grid-cols-1 gap-x-4">
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>category</label>
             <input
@@ -122,7 +127,7 @@ const ProjectAddLayout = () => {
           ></textarea>
         </div>
         <div class="text-center">
-          <button class="bg-blue-500 rounded-md text-white py-2 w-full max-w-[200px]">Thêm dự án</button>
+          <button type='submit' class="bg-blue-500 rounded-md text-white py-2 w-full max-w-[200px]">Thêm dự án</button>
         </div>
       </form>
     </div>

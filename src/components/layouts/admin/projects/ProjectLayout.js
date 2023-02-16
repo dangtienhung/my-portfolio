@@ -77,9 +77,13 @@ const ProjectLayout = () => {
 			});
 		});
 	});
-	console.log(preview);
 	return /* html */ `
     <div class='flex-1 p-4 bg-lightMode rounded-lg shadow-lg overflow-hidden'>
+      <div>
+        <button class='xl:hidden inline-block mb-4'>
+          <a href="/admin/project/add-new" class="inline-block bg-blue-400 outline-none py-3 px-8 text-white capitalize rounded">Thêm dự án</a>
+        </button>
+      </div>
       <div class="overflow-x-scroll rounded-lg bg-white shadow-md scroll-smooth">
         <table class='w-full'>
           <thead class='bg-[#f7f7f8]'>

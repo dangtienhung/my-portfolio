@@ -18,20 +18,20 @@ const links = [
 
 const AsideAdmin = () => {
 	return /* html */ `
-    <div class='w-full max-w-xs p-4 bg-lightMode shadow-lg h-full rounded-lg hidden xl:block'>
-      <div class="overflow-y-auto h-full -mr-4 pr-4">
-      <ul>
-      ${links
+		<div class='w-full max-w-xs p-4 bg-lightMode shadow-lg h-full rounded-lg hidden xl:block'>
+			<div class="overflow-y-auto h-full -mr-4 pr-4">
+			<ul>
+			${links
 				.map(
 					(link) => `
-          <li><a href="${link.to}" class='p-2 hover:bg-blue-400 transition-all duration-200 inline-block w-full rounded-lg hover:text-white mb-4'>${link.title}</a></li>
-          `
+					<li><a href="${link.to}" class='p-2 hover:bg-blue-400 transition-all duration-200 inline-block w-full rounded-lg hover:text-white mb-4'>${link.title}</a></li>
+					`
 				)
 				.join('')}
-        </ul>
-      </div>
-    </div>
-  `;
+				</ul>
+			</div>
+		</div>
+	`;
 };
 
 export default AsideAdmin;
