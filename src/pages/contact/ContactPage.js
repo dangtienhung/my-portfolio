@@ -1,13 +1,13 @@
-import { Aside, HomeLayout } from '../../components';
+import { Aside, ContactLayout } from '../../components';
 
-const HomePage = () => {
+const ContactPage = () => {
 	return /* html */ `
     <div class='flex justify-between bg-lightMode'>
       ${Aside()}
       <div class='flex-1 bg-white'>
         <div class="h-screen xl:overflow-y-scroll">
           <div class='flex overflow-x-auto justify-end flex-col'>
-          ${HomeLayout()}
+            ${ContactLayout()}
           </div>
         </div>
       </div>
@@ -15,4 +15,4 @@ const HomePage = () => {
   `;
 };
 
-export default HomePage;
+export default ContactPage;

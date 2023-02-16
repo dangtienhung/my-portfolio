@@ -1,7 +1,11 @@
 import './style.scss';
 
 import {
+	AboutUsPage,
+	ContactPage,
 	Dashboard,
+	EducationPage,
+	ExperiencePage,
 	HomePage,
 	NotFound,
 	Project,
@@ -10,6 +14,7 @@ import {
 	ProjectEditPage,
 	SignInPage,
 	SignUpPage,
+	SkillPage,
 } from './pages';
 
 import Navigo from 'navigo';
@@ -19,6 +24,11 @@ const router = new Navigo('/');
 const app = document.querySelector('#app');
 
 router.on('/', () => render(HomePage, app));
+router.on('/about', () => render(AboutUsPage, app));
+router.on('/education', () => render(EducationPage, app));
+router.on('/skills', () => render(SkillPage, app));
+router.on('/experience', () => render(ExperiencePage, app));
+router.on('/contact', () => render(ContactPage, app));
 router.on('/project/:idProject', (params) =>
 	render(() => Project(params), app)
 );

@@ -1,13 +1,13 @@
-import { Aside, HomeLayout } from '../../components';
+import { Aside, ExperienceLayout } from '../../components';
 
-const HomePage = () => {
+const ExperiencePage = () => {
 	return /* html */ `
     <div class='flex justify-between bg-lightMode'>
       ${Aside()}
       <div class='flex-1 bg-white'>
         <div class="h-screen xl:overflow-y-scroll">
           <div class='flex overflow-x-auto justify-end flex-col'>
-          ${HomeLayout()}
+            ${ExperienceLayout()}
           </div>
         </div>
       </div>
@@ -15,4 +15,4 @@ const HomePage = () => {
   `;
 };
 
-export default HomePage;
+export default ExperiencePage;

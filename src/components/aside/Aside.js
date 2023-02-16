@@ -3,31 +3,70 @@ import { useEffect } from '../../config/config';
 const links = [
 	{
 		name: 'home',
-		to: 'home',
+		to: '/',
 	},
 	{
 		name: 'about',
-		to: 'about',
+		to: '/about',
 	},
 	{
 		name: 'education',
-		to: 'education',
+		to: '/education',
 	},
 	{
 		name: 'skills',
-		to: 'skills',
+		to: '/skills',
 	},
 	{
 		name: 'experience',
-		to: 'experience',
+		to: '/experience',
 	},
 	{
 		name: 'contact',
-		to: 'contact',
+		to: '/contact',
 	},
 ];
 
 const Aside = () => {
+	useEffect(() => {
+		const text = document.querySelector('.text-load');
+		if (text) {
+			const textLoad = () => {
+				setTimeout(() => {
+					text.textContent = 'hung';
+				}, 0);
+				setTimeout(() => {
+					text.textContent = 'front-end';
+				}, 4000);
+			};
+			textLoad();
+			setInterval(textLoad, 4000);
+		}
+		const isElInViewPort = (el) => {
+			let rect = el.getBoundingClientRect();
+			let viewHeight =
+				window.innerHeight || document.documentElement.clientHeight;
+			return (
+				(rect.top <= 0 && rect.bottom >= 0) ||
+				(rect.bottom >= viewHeight && rect.top <= viewHeight) ||
+				(rect.top >= 0 && rect.bottom <= viewHeight)
+			);
+		};
+		const elToShow = document.querySelectorAll('.onscrool-text');
+		function loop() {
+			elToShow.forEach((item) => {
+				if (isElInViewPort(item)) {
+					item.classList.remove('-translate-x-[150%]');
+					item.classList.remove('translate-y-[200px]');
+				} else {
+					item.classList.add('-translate-x-[150%]');
+					item.classList.add('translate-y-[200px]');
+				}
+			});
+		}
+		window.onscroll = loop;
+		loop();
+	});
 	return /* html */ `
   <div class='w-full max-w-[300px] hidden lg:block'>
 		<div class='w-full px-4 bg-lightMode min-h-screen'>
@@ -52,8 +91,9 @@ const Aside = () => {
 									(link) => /* html */ `
 								<li>
                   <a
-                    href="#${link.to}"
+                    href="${link.to}"
                     id='${link.name}' class='nav__link ct-header-link'
+                    data-navigo
                   >
                     ${link.name}
                   </a>

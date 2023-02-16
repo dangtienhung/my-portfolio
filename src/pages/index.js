@@ -7,3 +7,8 @@ export { default as ProjectEditPage } from './admin/projects/ProjectEditPage';
 export { default as Project } from './project/Project';
 export { default as SignUpPage } from './admin/SignUp/SignUpPage';
 export { default as SignInPage } from './admin/SignIn/SignInPage';
+export { default as AboutUsPage } from './aboutus/AboutUsPage';
+export { default as EducationPage } from './education/EducationPage';
+export { default as SkillPage } from './skill/SkillPage';
+export { default as ExperiencePage } from './experience/ExperiencePage';
+export { default as ContactPage } from './contact/ContactPage';

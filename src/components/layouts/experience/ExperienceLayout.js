@@ -16,9 +16,9 @@ const ExperienceLayout = () => {
 	}, []);
 	return /* html */ `
     <section class='px-[4%] py-20 min-h-screen' id='experience'>
-      <h4 class="uppercase text-sm text-gray-400 transition-all duration-1000">EXPERIENCE</h4>
-      <h2 class='uppercase text-3xl font-medium mt-8 leading-10 transition-all duration-1000'>WORK EXPERIENCE</h2>
-      <p class='mt-10 transition-all duration-1000'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae voluptate rerum aperiam officiis delectus, animi optio qui dolorum hic eligendi nulla adipisci! Nulla possimus cumque quisquam porro facilis inventore sunt.</p>
+      <h4 class="onscrool-text -translate-x-[150%] uppercase text-sm text-gray-400 transition-all duration-1000">EXPERIENCE</h4>
+      <h2 class='onscrool-text -translate-x-[150%] uppercase text-3xl font-medium mt-8 leading-10 transition-all duration-1000'>WORK EXPERIENCE</h2>
+      <p class='onscrool-text -translate-x-[150%] mt-10 transition-all duration-1000'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae voluptate rerum aperiam officiis delectus, animi optio qui dolorum hic eligendi nulla adipisci! Nulla possimus cumque quisquam porro facilis inventore sunt.</p>
       <div class="grid grid-cols-2 gap-10 mt-12">
         ${projects
 					?.map((project) => {
@@ -67,10 +67,6 @@ const ExperienceLayout = () => {
           `;
 					})
 					.join('')}
-      </div>
-      <div class='text-center mt-12'>
-        <button class='py-2 px-6 rounded-lg bg-blue-500 text-white capitalize'>Load more...</button>
-      </div>
     </section>
   `;
 };

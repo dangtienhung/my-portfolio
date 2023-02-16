@@ -19,6 +19,7 @@
     "postcss": "^8.4.21",
     "sass": "^1.58.1",
     "sweetalert2": "^11.7.1",
-    "tailwindcss": "^3.2.6"
+    "tailwindcss": "^3.2.6",
+    "toastify-js": "^1.12.0"
   }
 }

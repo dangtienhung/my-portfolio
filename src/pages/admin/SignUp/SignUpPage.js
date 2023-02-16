@@ -1,13 +1,14 @@
+import 'toastify-js/src/toastify.css';
+
 import { router, useEffect } from '../../../config/config';
 
-import { postUserInfo } from '../../../api/config-user';
+import Toastify from 'toastify-js';
+import { signUpUserInfo } from '../../../api/config-user-json';
 
 const SignUpPage = () => {
 	const handleCreateUser = async (data) => {
-		console.log('🚀 ~ file: SignUpPage.js:7 ~ handleCreateUser ~ data', data);
 		try {
-			localStorage.setItem('userInfo', JSON.stringify(data));
-			await postUserInfo(data);
+			await signUpUserInfo(data);
 			Toastify({
 				text: 'Đăng ký thành công!',
 				duration: 3000,
@@ -63,6 +64,7 @@ const SignUpPage = () => {
 			) {
 				const data = { email, password, createdAt: new Date() };
 				handleCreateUser(data);
+				window.location = '/admin/dashboard';
 			} else {
 				Toastify({
 					text: 'Bạn nhập chưa đúng định dạng email!',
@@ -72,7 +74,7 @@ const SignUpPage = () => {
 				return false;
 			}
 		});
-	}, []);
+	});
 	return /* html */ `
   <div
     style='background-image: url("/assets/images/login/bg-writting-cv.png")'

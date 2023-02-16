@@ -1,43 +1,6 @@
 import { useEffect } from '../../../config/config';
 
 const HomeLayout = () => {
-	useEffect(() => {
-		const text = document.querySelector('.text-load');
-		const textLoad = () => {
-			setTimeout(() => {
-				text.textContent = 'hung';
-			}, 0);
-			setTimeout(() => {
-				text.textContent = 'front-end';
-			}, 4000);
-		};
-		textLoad();
-		setInterval(textLoad, 4000);
-		const isElInViewPort = (el) => {
-			let rect = el.getBoundingClientRect();
-			let viewHeight =
-				window.innerHeight || document.documentElement.clientHeight;
-			return (
-				(rect.top <= 0 && rect.bottom >= 0) ||
-				(rect.bottom >= viewHeight && rect.top <= viewHeight) ||
-				(rect.top >= 0 && rect.bottom <= viewHeight)
-			);
-		};
-		const elToShow = document.querySelectorAll('.onscrool-text');
-		function loop() {
-			elToShow.forEach((item) => {
-				if (isElInViewPort(item)) {
-					item.classList.remove('-translate-x-[150%]');
-					item.classList.remove('translate-y-[200px]');
-				} else {
-					item.classList.add('-translate-x-[150%]');
-					item.classList.add('translate-y-[200px]');
-				}
-			});
-		}
-		window.onscroll = loop;
-		loop();
-	});
 	return /* html */ `
   <section class='w-full relative slider-item duration-1000 transition-all' id='home'>
     <div class="slider-main" style='transition: transform 0.25s linear;'>
@@ -66,7 +29,7 @@ const HomeLayout = () => {
                 <span class='text-load text-blue-500 capitalize relative'>hung</span>
               </p>
             </h2>
-            <span class='onscrool-text text-sm mt-4 whitespace-normal transition-all duration-1000 -translate-x-[150%]'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur illum praesentium porro?</span>
+            <span class='onscrool-text -translate-x-[150%] text-sm mt-4 whitespace-normal transition-all duration-1000'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur illum praesentium porro?</span>
             <a href='/assets/cv/Lap8.pdf' download class="download-cv onscrool-text duration-700 -translate-x-[150%] rounded-sm uppercase mt-12 max-w-[180px] border border-white p-2 flex justify-center items-center gap-x-2 bg-white text-black lg:opacity-30 hover:opacity-100 transition">
               <span>download cv</span>
               <img
