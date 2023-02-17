@@ -14,3 +14,6 @@ export { default as ExperiencePage } from './experience/ExperiencePage';
 export { default as ContactPage } from './contact/ContactPage';
 export { default as UserPage } from './admin/users/UserPage';
 export { default as UserEdit } from './admin/users/UserEdit';
+export { default as EducationAdmin } from './admin/education/EducationAdmin';
+export { default as EducationAdd } from './admin/education/EducationAdd';
+export { default as EducationEditPage } from './admin/education/EducationEditPage';

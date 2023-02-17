@@ -1,10 +1,5 @@
 const links = [
 	{
-		id: 1,
-		title: 'Dashboard',
-		to: '/admin/dashboard',
-	},
-	{
 		id: 2,
 		title: 'Quản lý dự án',
 		to: '/admin/projects',
@@ -13,6 +8,21 @@ const links = [
 		id: 3,
 		title: 'Thông tin người dùng',
 		to: '/admin/user',
+	},
+	{
+		id: 4,
+		title: 'Học vấn',
+		to: '/admin/education',
+	},
+	{
+		id: 5,
+		title: 'Kỹ năng',
+		to: '/admin/skills',
+	},
+	{
+		id: 6,
+		title: 'Liên hệ',
+		to: '/admin/contact',
 	},
 ];
 

@@ -8,8 +8,9 @@ const UserLayout = () => {
 	const [info, setInfo] = useState([]);
 	useEffect(() => {
 		const data = JSON.parse(localStorage.getItem('userInfo'));
+		console.log('🚀 ~ file: UserLayout.js:11 ~ useEffect ~ data', data);
 		(async () => {
-			const dataUser = await getUserInfo(data[0].id);
+			const dataUser = await getUserInfo(data.id || data[0].id);
 			setInfo(dataUser?.data);
 		})();
 	}, []);

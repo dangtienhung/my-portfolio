@@ -16,7 +16,7 @@ const UserEditLayout = () => {
 		const data = JSON.parse(localStorage.getItem('userInfo'));
 		(async () => {
 			try {
-				const datafetch = await getUserInfo(data[0].id);
+				const datafetch = await getUserInfo(data.id || data[0].id);
 				setInfo(datafetch.data);
 			} catch (error) {
 				console.log(error);

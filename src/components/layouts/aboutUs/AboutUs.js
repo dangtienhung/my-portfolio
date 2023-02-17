@@ -16,7 +16,7 @@ const AboutUs = () => {
         </p>
         <p class='mt-4 transition-all duration-1000 onscrool-text -translate-x-[150%]'>
           <span class='mt-4'>${
-						userInfo?.descriptionInfo ||
+						userInfo?.descriptionInfo?.replace(/[\r\n]/g, '<br/>') ||
 						/* html */ `<div class='h-10 w-10 rounded-full border-4 border-blue-500 border-t-4 border-t-transparent animate-spin'></div>`
 					}</span>
         </p>

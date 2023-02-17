@@ -4,6 +4,9 @@ import {
 	AboutUsPage,
 	ContactPage,
 	Dashboard,
+	EducationAdd,
+	EducationAdmin,
+	EducationEditPage,
 	EducationPage,
 	ExperiencePage,
 	HomePage,
@@ -45,6 +48,11 @@ router.on('/admin/project/edit/:idProject', (params) =>
 );
 router.on('/admin/user', () => render(UserPage, app));
 router.on('/admin/user/edit', () => render(UserEdit, app));
+router.on('/admin/education', () => render(EducationAdmin, app));
+router.on('/admin/education/add', () => render(EducationAdd, app));
+router.on('/admin/education/edit/:idEducate', (params) =>
+	render(() => EducationEditPage(params), app)
+);
 
 router.notFound(() => render(NotFound, app));
 
