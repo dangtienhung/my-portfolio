@@ -12,3 +12,4 @@ export { default as EducationPage } from './education/EducationPage';
 export { default as SkillPage } from './skill/SkillPage';
 export { default as ExperiencePage } from './experience/ExperiencePage';
 export { default as ContactPage } from './contact/ContactPage';
+export { default as UserPage } from './admin/users/UserPage';

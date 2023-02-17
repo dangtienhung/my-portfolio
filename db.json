@@ -72,6 +72,16 @@
       "password": "abcabc",
       "createdAt": "2023-02-16T04:26:56.504Z",
       "id": 6
+    },
+    {
+      "email": "dangtienhung123123@gmail.com",
+      "password": "1234567",
+      "id": 7
+    },
+    {
+      "email": "dangtienhung1231234@gmail.com",
+      "password": "1234567",
+      "id": 8
     }
   ]
 }

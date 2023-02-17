@@ -3,18 +3,19 @@ import 'toastify-js/src/toastify.css';
 import { router, useEffect } from '../../../config/config';
 
 import Toastify from 'toastify-js';
-import { signUpUserInfo } from '../../../api/config-user-json';
+import { register } from '../../../api/config-user-json';
 
 const SignUpPage = () => {
 	const handleCreateUser = async (data) => {
 		try {
-			await signUpUserInfo(data);
+			await register(data);
 			Toastify({
 				text: 'Đăng ký thành công!',
 				duration: 3000,
 				backgroundColor: 'rgb(59 130 246)',
 			}).showToast();
-			router.navigate('/admin/dashboard');
+			localStorage.setItem('userInfo', JSON.stringify(data));
+			window.location = '/admin/dashboard';
 		} catch (error) {
 			console.log(error);
 		}
@@ -64,7 +65,6 @@ const SignUpPage = () => {
 			) {
 				const data = { email, password, createdAt: new Date() };
 				handleCreateUser(data);
-				window.location = '/admin/dashboard';
 			} else {
 				Toastify({
 					text: 'Bạn nhập chưa đúng định dạng email!',

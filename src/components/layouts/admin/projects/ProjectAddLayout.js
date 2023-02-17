@@ -37,10 +37,6 @@ const ProjectAddLayout = () => {
 				fileUrl,
 				linkWebsite,
 			};
-			console.log(
-				'🚀 ~ file: ProjectAddLayout.js:30 ~ form.addEventListener ~ data',
-				data
-			);
 			(async () => {
 				try {
 					await addProject(data);

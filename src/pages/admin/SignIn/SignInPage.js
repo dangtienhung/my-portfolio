@@ -1,40 +1,67 @@
-import { getAllUser } from '../../../api/config-user';
+import 'toastify-js/src/toastify.css';
+
+import Toastify from 'toastify-js';
+import { login } from '../../../api/config-user-json';
 import { useEffect } from '../../../config/config';
 
 const SignInPage = () => {
+	const loginPage = async (data) => {
+		try {
+			const response = await login(data);
+			if (response.data.length === 1) {
+				Toastify({
+					text: 'Mật khẩu tối thiểu phải là 6 ký tự!',
+					duration: 3000,
+					backgroundColor: 'orange',
+				}).showToast();
+				localStorage.setItem('userInfo', JSON.stringify(data));
+				window.location = '/admin/dashboard';
+			} else {
+				Toastify({
+					text: 'Tài khoản or mật khẩu không đúng!',
+					duration: 3000,
+					backgroundColor: 'orange',
+				}).showToast();
+				return false;
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	useEffect(() => {
 		const form = document.querySelector('.login-form');
 		const regextEmail =
 			/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-		form.addEventListener('click', (e) => {
+		form.addEventListener('submit', (e) => {
 			e.preventDefault();
 			let email = form.elements.email.value;
 			let password = form.elements.password.value;
-			if (password.trim().length < 6) {
-				// Toastify({
-				// 	text: 'Mật khẩu tối thiểu phải là 6 ký tự!',
-				// 	duration: 3000,
-				// 	backgroundColor: 'orange',
-				// }).showToast();
+			if (email.trim() === '' || password.trim() === '') {
+				Toastify({
+					text: 'Bạn đang để trống!',
+					duration: 3000,
+					backgroundColor: 'orange',
+				}).showToast();
 				return false;
 			}
-			if (email.trim() === '' || password.trim() === '') {
-				// Toastify({
-				// 	text: 'Bạn đang để trống!',
-				// 	duration: 3000,
-				// 	backgroundColor: 'orange',
-				// }).showToast();
+			if (password.trim().length < 6) {
+				Toastify({
+					text: 'Mật khẩu tối thiểu phải là 6 ký tự!',
+					duration: 3000,
+					backgroundColor: 'orange',
+				}).showToast();
 				return false;
 			}
 			if (regextEmail.test(email)) {
-				(async () => {
-					try {
-						const { data } = await getAllUser();
-						console.log(data);
-					} catch (error) {
-						console.log(error);
-					}
-				})();
+				const data = { email, password };
+				loginPage(data);
+			} else {
+				Toastify({
+					text: 'Chưa đúng định dạng email!',
+					duration: 3000,
+					backgroundColor: 'orange',
+				}).showToast();
+				return false;
 			}
 		});
 	}, []);

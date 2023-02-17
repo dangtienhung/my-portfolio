@@ -1,4 +1,8 @@
+import 'toastify-js/src/toastify.css';
+
 import { router, useEffect, useState } from '../../../config/config';
+
+import Toastify from 'toastify-js';
 
 const links = [
 	{
@@ -22,8 +26,14 @@ const Navigation = () => {
 	const [info, setInfo] = useState([]);
 	useEffect(() => {
 		const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-		if (userInfo === null || userInfo === undefined) {
-			router.navigate('/admin/sign-in');
+		if (Object.keys(userInfo).length === 0) {
+			Toastify({
+				text: 'Chưa đúng định dạng email!',
+				duration: 3000,
+				backgroundColor: 'orange',
+			}).showToast();
+			window.location = '/admin/sign-in';
+			return false;
 		} else {
 			setInfo(userInfo);
 		}
