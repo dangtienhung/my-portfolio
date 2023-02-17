@@ -67,9 +67,7 @@ const ProjectLayout = (params) => {
             </div>
           </div>
           <div class='mt-12'>
-            <p>${
-							project?.description
-						} Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo exercitationem dolores iusto autem sequi? A qui voluptatem ducimus est asperiores, magnam, unde ipsa possimus aliquam, ipsum eum nostrum at nesciunt! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus consequatur repellendus officia, sit sint modi! Fugit sint cumque ipsam aut autem, quos iure adipisci animi molestiae, architecto accusamus corrupti aspernatur. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae et sit illum adipisci minima voluptates corporis nemo deleniti, fuga nulla molestiae repellat, explicabo commodi temporibus ab voluptas! Cum, dolorem mollitia! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id dicta enim quas aperiam mollitia quisquam blanditiis minima quod incidunt quidem nobis autem natus quis perferendis dolores consequuntur, accusantium est sapiente!</p>
+            <p>${project?.description?.replace(/[\r\n]/g, '<br/>')}</p>
           </div>
         </div>
       </div>

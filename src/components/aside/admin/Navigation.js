@@ -1,6 +1,11 @@
 import 'toastify-js/src/toastify.css';
 
-import { router, useEffect, useState } from '../../../config/config';
+import {
+	avatarDefault,
+	router,
+	useEffect,
+	useState,
+} from '../../../config/config';
 
 import Toastify from 'toastify-js';
 
@@ -26,16 +31,20 @@ const Navigation = () => {
 	const [info, setInfo] = useState([]);
 	useEffect(() => {
 		const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-		if (Object.keys(userInfo).length === 0) {
-			Toastify({
-				text: 'Chưa đúng định dạng email!',
-				duration: 3000,
-				backgroundColor: 'orange',
-			}).showToast();
-			window.location = '/admin/sign-in';
-			return false;
+		if (userInfo) {
+			if (Object.keys(userInfo).length === 0) {
+				Toastify({
+					text: 'Chưa đúng định dạng email!',
+					duration: 3000,
+					backgroundColor: 'orange',
+				}).showToast();
+				window.location = '/admin/sign-in';
+				return false;
+			} else {
+				setInfo(userInfo);
+			}
 		} else {
-			setInfo(userInfo);
+			window.location = '/admin/sign-in';
 		}
 	}, []);
 	useEffect(() => {
@@ -72,7 +81,7 @@ const Navigation = () => {
           <div class="relative group">
             <div class="h-16 w-16 rounded-full cursor-pointer">
               <img
-                src="https://i.pinimg.com/236x/2a/94/4e/2a944e3ae3c301e49a20b803956f271f.jpg" alt=""
+                src="${info?.avatar || avatarDefault}" alt=""
                 class="w-full h-full object-cover rounded-full"
               />
             </div>

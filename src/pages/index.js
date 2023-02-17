@@ -13,3 +13,4 @@ export { default as SkillPage } from './skill/SkillPage';
 export { default as ExperiencePage } from './experience/ExperiencePage';
 export { default as ContactPage } from './contact/ContactPage';
 export { default as UserPage } from './admin/users/UserPage';
+export { default as UserEdit } from './admin/users/UserEdit';

@@ -14,7 +14,7 @@ const SignInPage = () => {
 					duration: 3000,
 					backgroundColor: 'orange',
 				}).showToast();
-				localStorage.setItem('userInfo', JSON.stringify(data));
+				localStorage.setItem('userInfo', JSON.stringify(response.data));
 				window.location = '/admin/dashboard';
 			} else {
 				Toastify({

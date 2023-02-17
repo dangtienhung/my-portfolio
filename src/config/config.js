@@ -2,6 +2,12 @@ import Navigo from 'navigo';
 
 const router = new Navigo('/', { linksSelector: 'a' });
 
+export const avatarDefault =
+	'https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-1.jpg';
+
+export const COULD_NAME = 'dcwdrvxdg';
+export const PRESET_NAME = 'imageStorePorfolio';
+
 let effects = [];
 let currentEffectOrder = 0;
 

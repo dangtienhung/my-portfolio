@@ -1,5 +1,9 @@
+import 'toastify-js/src/toastify.css';
+
 import { getOneProject, updateProject } from '../../../../api/config-project';
 import { router, useEffect, useState } from '../../../../config/config';
+
+import Toastify from 'toastify-js';
 
 const ProjectEditLayout = (params) => {
 	const {
