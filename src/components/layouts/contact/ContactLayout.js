@@ -1,4 +1,11 @@
+import { useEffect, useState } from '../../../config/config';
+
 const ContactLayout = () => {
+	const [userInfo, setUserInfo] = useState([]);
+	useEffect(() => {
+		const data = JSON.parse(localStorage.getItem('userInfo'));
+		setUserInfo(data);
+	}, []);
 	return /* html */ `
     <section class='px-[4%] py-20 min-h-screen' id='contact'>
       <h4 class="onscrool-text -translate-x-[150%] uppercase text-sm text-gray-400 transition-all duration-1000">GET IN TOUCH</h4>

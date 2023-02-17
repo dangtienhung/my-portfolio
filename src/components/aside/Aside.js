@@ -1,4 +1,7 @@
-import { useEffect } from '../../config/config';
+import { useEffect, useState } from '../../config/config';
+
+import { avatarDefault } from '../../config/config';
+import { getUserInfo } from '../../api/config-user-json';
 
 const links = [
 	{
@@ -69,7 +72,6 @@ const Aside = () => {
 	});
 	useEffect(() => {
 		const OpenModal = document.querySelector('.btn-modal');
-		console.log('🚀 ~ file: Aside.js:72 ~ useEffect ~ OpenModal', OpenModal);
 		const ModalOverlay = document.querySelector('.modal-overlay');
 		const CloseModal = document.querySelector('.btn-close');
 		const handleToggle = () => {
@@ -79,17 +81,39 @@ const Aside = () => {
 		OpenModal?.addEventListener('click', handleToggle);
 		ModalOverlay?.addEventListener('click', handleToggle);
 	}, []);
+	const [userInfoData, setUserInfoData] = useState([]);
+	useEffect(() => {
+		(async () => {
+			try {
+				const data = JSON.parse(localStorage.getItem('userInfo'));
+				if (data.id || data[0].id) {
+					const userInfo = await getUserInfo(data.id || data[0].id);
+					if (userInfo) {
+						setUserInfoData(userInfo.data);
+						localStorage.setItem('userInfo', JSON.stringify(userInfo.data));
+					}
+				} else {
+					window.location = '/admin/sign-in';
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		})();
+	}, []);
+	console.log('🚀 ~ file: Aside.js:85 ~ Aside ~ userInfoData', userInfoData);
 	return /* html */ `
   <div class='w-full max-w-[300px] hidden lg:block'>
 		<div class='w-full px-4 bg-lightMode min-h-screen'>
 			<div class='overflow-y-auto h-screen -mr-4 pr-4'>
 				<section class='flex flex-col items-center justify-around h-[284px] mt-4'>
 					<img
-						src="/assets/images/my.jpg"
+						src="${userInfoData?.avatar}"
 						alt=""
 						class='h-40 w-40 object-cover rounded-full'/>
 					<div class='text-center capitalize'>
-						<h2 class='text-black capitalize text-2xl'>Đặng tiến hưng</h2>
+						<h2 class='text-black capitalize text-2xl'>${
+							userInfoData?.username || 'Đặng hưng'
+						}</h2>
 						<h4 class='text-blue-400 italic text-sm mt-2'>Front end developer</h4>
 					</div>
 				</section>

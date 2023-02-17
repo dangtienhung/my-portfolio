@@ -1,43 +1,24 @@
-import { useEffect } from '../../../config/config';
+import { useEffect, useState } from '../../../config/config';
 
 const AboutUs = () => {
-	// useEffect(() => {
-	// 	const isElInViewPort = (el) => {
-	// 		let rect = el.getBoundingClientRect();
-	// 		let viewHeight =
-	// 			window.innerHeight || document.documentElement.clientHeight;
-	// 		return (
-	// 			(rect.top <= 0 && rect.bottom >= 0) ||
-	// 			(rect.bottom >= viewHeight && rect.top <= viewHeight) ||
-	// 			(rect.top >= 0 && rect.bottom <= viewHeight)
-	// 		);
-	// 	};
-	// 	const elToShow = document.querySelectorAll('.onscrool-text');
-	// 	function loop() {
-	// 		elToShow.forEach((item) => {
-	// 			if (isElInViewPort(item)) {
-	// 				item.classList.remove('-translate-x-[150%]');
-	// 				item.classList.remove('translate-y-[200px]');
-	// 			} else {
-	// 				item.classList.add('-translate-x-[150%]');
-	// 				item.classList.add('translate-y-[200px]');
-	// 			}
-	// 		});
-	// 	}
-	// 	window.onscroll = loop;
-	// 	loop();
-	// });
+	const [userInfo, setUserInfo] = useState([]);
+	useEffect(() => {
+		const data = JSON.parse(localStorage.getItem('userInfo'));
+		setUserInfo(data);
+	}, []);
 	return /* html */ `
     <section class='px-[4%] py-20 min-h-screen' id='about'>
       <h4 class="uppercase text-sm text-gray-400 transition-all duration-500 onscrool-text -translate-x-[150%]">About us</h4>
       <h2 class='uppercase text-3xl font-medium mt-8 transition-all duration-700 onscrool-text -translate-x-[150%]'>who am i?</h2>
       <div class='mt-20'>
         <p class='transition-all duration-1000 onscrool-text -translate-x-[150%]'>
-          <span class="font-semibold">Đặng Tiến Hưng</span>
-          <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex quod beatae maxime quaerat. Ad, tempora? Adipisci quae autem aperiam consectetur fugiat, ratione tempore harum fugit eveniet modi sed quo molestiae soluta atque possimus. Tempore eveniet nemo quis voluptatum accusantium! Nam, fugiat? Soluta, commodi rerum facere totam reiciendis, at libero eligendi ea fugiat minima, quibusdam inventore quam! Quisquam repellendus, architecto veritatis tenetur molestias nobis quo quibusdam corporis adipisci doloribus? Laboriosam sed voluptate sit recusandae et quasi. Asperiores modi necessitatibus velit aut?</span>
+          <span class="font-semibold capitalize">${userInfo?.username}</span>
         </p>
         <p class='mt-4 transition-all duration-1000 onscrool-text -translate-x-[150%]'>
-          <span class='mt-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eveniet adipisci impedit quos, sit debitis eligendi quasi consectetur minima velit accusamus vel voluptatum cupiditate aliquid earum quod ea inventore optio dignissimos recusandae voluptate deleniti iusto, fugiat vitae. Quo, dolore nulla.</span>
+          <span class='mt-4'>${
+						userInfo?.descriptionInfo ||
+						/* html */ `<div class='h-10 w-10 rounded-full border-4 border-blue-500 border-t-4 border-t-transparent animate-spin'></div>`
+					}</span>
         </p>
       </div>
       <div class="xl:mt-16 mt-12 grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-12 onscrool-text -translate-x-[150%] transition-all duration-1000">
