@@ -112,9 +112,9 @@ const ProjectLayout = () => {
 											}</td>
                       <td class="block py-4 w-full min-w-[300px]">
                         <div class="flex items-center gap-x-3">
-                          <img src="${
-														project.fileUrl
-													}" alt="" class='w-[66px] h-[55px] rounded object-cover'>
+                          <img
+                            src="${project.fileUrl[0]}"
+                            alt="" class='w-[66px] h-[55px] rounded object-cover'>
                           <div class="flex-1">
                             <h3 class="font-semibold capitalize">${
 															project.nameProject

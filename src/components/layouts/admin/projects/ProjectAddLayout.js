@@ -1,22 +1,47 @@
-import { router, useEffect } from '../../../../config/config';
+import {
+	COULD_NAME,
+	PRESET_NAME,
+	router,
+	useEffect,
+} from '../../../../config/config';
 
 import { addProject } from '../../../../api/config-project';
+import axios from 'axios';
 
 const ProjectAddLayout = () => {
 	useEffect(() => {
 		const form = document.querySelector('#form');
 		let image = document.querySelector('#image');
-		let file, fileUrl;
-		image.addEventListener('change', (e) => {
-			file = e.target.files[0];
-			const reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = () => {
-				fileUrl = reader.result;
-			};
-		});
+		// let file, fileUrl;
+		// image.addEventListener('change', (e) => {
+		// 	file = e.target.files[0];
+		// 	const reader = new FileReader();
+		// 	reader.readAsDataURL(file);
+		// 	reader.onload = () => {
+		// 		fileUrl = reader.result;
+		// 	};
+		// });
+		const uploadAvatar = async (files) => {
+			if (files) {
+				const folder_name = 'portfolio';
+				const api = `https://api.cloudinary.com/v1_1/${COULD_NAME}/image/upload`;
+				const urls = [];
+				const formData = new FormData();
 
-		form.addEventListener('submit', (e) => {
+				formData.append('upload_preset', PRESET_NAME);
+				formData.append('folder', folder_name);
+
+				for (const file of files) {
+					formData.append('file', file);
+					const res = await axios.post(api, formData, {
+						headers: { 'Content-Type': 'multipart/form-data' },
+					});
+					urls.push(res.data.secure_url);
+				}
+				return urls;
+			}
+		};
+		form.addEventListener('submit', async (e) => {
 			e.preventDefault();
 			let nameProject = document.querySelector('#name').value;
 			let linkProject = document.querySelector('#link').value;
@@ -26,6 +51,7 @@ const ProjectAddLayout = () => {
 			let category = document.querySelector('#category').value;
 			let description = document.querySelector('#description').value;
 			let linkWebsite = document.querySelector('#linkWebsite').value;
+			const urls = await uploadAvatar(image.files);
 			const data = {
 				nameProject,
 				linkProject,
@@ -34,9 +60,14 @@ const ProjectAddLayout = () => {
 				techonology,
 				category,
 				description,
-				fileUrl,
+				category,
 				linkWebsite,
+				fileUrl: urls,
 			};
+			console.log(
+				'🚀 ~ file: ProjectAddLayout.js:33 ~ form.addEventListener ~ data',
+				data
+			);
 			(async () => {
 				try {
 					await addProject(data);
@@ -113,7 +144,7 @@ const ProjectAddLayout = () => {
           </div>
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>hình ảnh mô tả dự án</label>
-            <input type="file" name="" id="image" class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none" placeholder='Tên dự án'>
+            <input type="file" name="" id="image" multiple class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none" placeholder='Tên dự án'>
           </div>
         </div>
         <div class="grid grid-cols-1 mb-10">

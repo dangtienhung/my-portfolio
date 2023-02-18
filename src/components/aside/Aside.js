@@ -80,7 +80,7 @@ const Aside = () => {
 		CloseModal?.addEventListener('click', handleToggle);
 		OpenModal?.addEventListener('click', handleToggle);
 		ModalOverlay?.addEventListener('click', handleToggle);
-	}, []);
+	});
 	const [userInfoData, setUserInfoData] = useState([]);
 	useEffect(() => {
 		(async () => {
@@ -128,7 +128,7 @@ const Aside = () => {
 								<li>
                   <a
                     href="${link.to}"
-                    id='${link.name}' class='nav__link ct-header-link'
+                    id='${link.name}' class='nav__link ct-header-link' data-navigo
                   >
                     ${link.name}
                   </a>

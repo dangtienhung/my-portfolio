@@ -30,7 +30,7 @@ const ExperienceLayout = () => {
 						return /* html */ `
             <div class="w-full rounded-lg overflow-hidden group bg-gray-200">
               <a href="/project/${project?.id}" class='inline-block w-full'>
-                <img src="${project?.fileUrl}" alt="${
+                <img src="${project?.fileUrl[0]}" alt="${
 							project?.nameProject
 						}" class='w-full h-[250px] object-cover rounded-lg'>
               </a>
