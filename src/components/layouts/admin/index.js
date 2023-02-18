@@ -8,3 +8,5 @@ export { default as UserEditLayout } from './users/UserEditLayout';
 export { default as EducationAdminLayout } from './Education/EducationAdminLayout';
 export { default as EducateAddNew } from './Education/EducateAddNew';
 export { default as EducateEdit } from './Education/EducateEdit';
+export { default as SkillLayoutAdmin } from './skill/SkillLayoutAdmin';
+export { default as SkillAddLayout } from './skill/SkillAddLayout';

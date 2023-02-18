@@ -17,3 +17,5 @@ export { default as UserEdit } from './admin/users/UserEdit';
 export { default as EducationAdmin } from './admin/education/EducationAdmin';
 export { default as EducationAdd } from './admin/education/EducationAdd';
 export { default as EducationEditPage } from './admin/education/EducationEditPage';
+export { default as SkillPageAdmin } from './admin/Skill/SkillPage';
+export { default as SkillAddPage } from './admin/Skill/SkillAddPage';

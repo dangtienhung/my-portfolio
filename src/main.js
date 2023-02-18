@@ -17,7 +17,9 @@ import {
 	ProjectEditPage,
 	SignInPage,
 	SignUpPage,
+	SkillAddPage,
 	SkillPage,
+	SkillPageAdmin,
 	UserEdit,
 	UserPage,
 } from './pages';
@@ -53,6 +55,9 @@ router.on('/admin/education/add', () => render(EducationAdd, app));
 router.on('/admin/education/edit/:idEducate', (params) =>
 	render(() => EducationEditPage(params), app)
 );
+router.on('/admin/skills', () => render(SkillPageAdmin, app));
+router.on('/admin/skills/add', () => render(SkillAddPage, app));
+router.on('/admin/skill/edit/:idSkill');
 
 router.notFound(() => render(NotFound, app));
 
