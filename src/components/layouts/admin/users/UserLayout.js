@@ -57,6 +57,13 @@ const UserLayout = () => {
 						placeholder='${info.email || 'Đang cập nhật'}'
 					/>
 				</div>
+        <div class='flex flex-col mb-5'>
+					<label for="" class='capitalize'>Vị trí apply</label>
+					<input
+						type="text" name="" id="name" disabled value='${info?.apply || 'Đang cập nhật'}'
+						class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
+					/>
+				</div>
 				<div class='flex flex-col mb-5'>
 					<label for="" class='capitalize'>số điện thoại</label>
 					<input

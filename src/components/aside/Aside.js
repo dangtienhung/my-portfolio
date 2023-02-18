@@ -39,7 +39,7 @@ const Aside = () => {
 					text.textContent = 'hung';
 				}, 0);
 				setTimeout(() => {
-					text.textContent = 'front-end';
+					text.textContent = `${userInfoData.apply?.split(' ')[0]}`;
 				}, 4000);
 			};
 			textLoad();
@@ -114,7 +114,7 @@ const Aside = () => {
 						<h2 class='text-black capitalize text-2xl'>${
 							userInfoData?.username || 'Đặng hưng'
 						}</h2>
-						<h4 class='text-blue-400 italic text-sm mt-2'>Front end developer</h4>
+						<h4 class='text-blue-400 italic text-sm mt-2'>${userInfoData.apply}</h4>
 					</div>
 				</section>
 				<nav class='mt-4'>

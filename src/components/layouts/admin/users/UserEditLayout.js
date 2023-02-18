@@ -63,10 +63,12 @@ const UserEditLayout = () => {
 			const phone = document.querySelector('#phone').value;
 			const birthday = document.querySelector('#birthday').value;
 			const descriptionInfo = document.querySelector('#descript-info').value;
+			const apply = document.querySelector('#apply').value;
 			const data = {
 				email: info.email,
 				password: info.password,
 				username,
+				apply,
 				avatar,
 				address,
 				phone,
@@ -116,6 +118,14 @@ const UserEditLayout = () => {
 							placeholder='Username'
 						/>
 					</div>
+          <div class='flex flex-col mb-5'>
+            <label for="" class='capitalize'>Vị trí apply</label>
+            <input
+              type="text" name="" id="apply" value='${info?.apply || ''}'
+              class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
+              placeholder='Apply'
+            />
+          </div>
 					<div class='flex flex-col mb-5'>
 						<label for="" class='capitalize'>Địa chỉ</label>
 						<input
