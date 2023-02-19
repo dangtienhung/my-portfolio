@@ -1,9 +1,16 @@
 import 'toastify-js/src/toastify.css';
 
+import {
+	COULD_NAME,
+	PRESET_NAME,
+	router,
+	useEffect,
+	useState,
+} from '../../../../config/config';
 import { getOneProject, updateProject } from '../../../../api/config-project';
-import { router, useEffect, useState } from '../../../../config/config';
 
 import Toastify from 'toastify-js';
+import axios from 'axios';
 
 const ProjectEditLayout = (params) => {
 	const {
@@ -20,33 +27,36 @@ const ProjectEditLayout = (params) => {
 			}
 		})();
 	}, []);
-	console.log(
-		'🚀 ~ file: ProjectEditLayout.js:10 ~ ProjectEditLayout ~ project',
-		project
-	);
+	const handleImage = async (files) => {
+		if (files) {
+			const folder_name = 'portfolio';
+			const api = `https://api.cloudinary.com/v1_1/${COULD_NAME}/image/upload`;
+			const urls = [];
+			const formData = new FormData();
+
+			formData.append('upload_preset', PRESET_NAME);
+			formData.append('folder', folder_name);
+
+			for (const file of files) {
+				formData.append('file', file);
+				const res = await axios.post(api, formData, {
+					headers: { 'Content-Type': 'multipart/form-data' },
+				});
+				urls.push(res.data.secure_url);
+			}
+			return urls;
+		}
+	};
 	useEffect(() => {
 		const form = document.querySelector('#form');
 		let image = document.querySelector('#image');
-		let file,
-			fileUrl = '';
-		image.addEventListener('change', (e) => {
-			file = e.target.files[0];
-			const reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = () => {
-				fileUrl = reader.result;
-				console.log(
-					'🚀 ~ file: ProjectEditLayout.js:34 ~ image.addEventListener ~ fileUrl',
-					fileUrl
-				);
-			};
-		});
-		form.addEventListener('submit', (e) => {
+		let fileUrl = '';
+		form.addEventListener('submit', async (e) => {
 			e.preventDefault();
 			let nameProject = document.querySelector('#name').value;
-			let urlLinkProject = document.querySelector('.urlLinkProject').src;
-			if (fileUrl === '') {
-				fileUrl = urlLinkProject;
+			fileUrl = await handleImage(image.files);
+			if (fileUrl.length === 0) {
+				fileUrl = project.fileUrl;
 			}
 			let linkProject = document.querySelector('#link').value;
 			let dateStart = document.querySelector('#date-start').value;
@@ -55,6 +65,7 @@ const ProjectEditLayout = (params) => {
 			let category = document.querySelector('#category').value;
 			let description = document.querySelector('#description').value;
 			let linkWebsite = document.querySelector('#linkWebsite').value;
+
 			const data = {
 				id: idProject,
 				nameProject,
@@ -84,9 +95,35 @@ const ProjectEditLayout = (params) => {
 			})();
 		});
 	});
+	useEffect(() => {
+		$(document).ready(function () {
+			// Initialize slick slider for main slider
+			$('.slider-for').slick({
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				fade: true,
+				asNavFor: '.slider-nav',
+			});
+
+			// Initialize slick slider for navigation slider
+			$('.slider-nav').slick({
+				autoplay: true,
+				autoplaySpeed: 3000,
+				slidesToShow: 4,
+				slidesToScroll: 1,
+				asNavFor: '.slider-for',
+				dots: false,
+				centerMode: false,
+				focusOnSelect: true,
+			});
+		});
+	});
 	return /* html */ `
     <div class='flex-1 p-4 bg-lightMode rounded-lg shadow-lg overflow-hidden'>
-      <h1 class="text-2xl font-semibold mb-10">Sửa dự án: ${project?.nameProject}</h1>
+      <h1 class="text-2xl font-semibold mb-10">Sửa dự án: ${
+				project?.nameProject
+			}</h1>
       <form autocomplete='off' id='form'>
         <div class="grid grid-cols-2 gap-x-4">
           <div class='flex flex-col mb-5'>
@@ -109,6 +146,7 @@ const ProjectEditLayout = (params) => {
             <label for="" class='capitalize'>link website</label>
             <input
               type="text" name="" id="linkWebsite"
+                value='${project?.linkWebsite}'
               class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
               placeholder='Link Website'
             />
@@ -132,7 +170,8 @@ const ProjectEditLayout = (params) => {
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>Công nghệ sử dụng</label>
             <input
-              type="text" name="" id="techonology" value='${project?.techonology}'
+              type="text" name="" id="techonology"
+              value='${project?.techonology}'
               class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
               placeholder='Công nghệ sử dụng'
             />
@@ -149,12 +188,35 @@ const ProjectEditLayout = (params) => {
         <div class="grid grid-cols-2 gap-x-4">
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>hình ảnh tô tả dự án</label>
-            <input type="file" name="" id="image" class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none" placeholder='Tên dự án'>
+            <input type="file" name="" id="image" multiple class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none" placeholder='Tên dự án'>
           </div>
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>hoặc giữ lại hình ảnh cũ</label>
-            <div class="group cursor-pointer flex items-center justify-center bg-gray-100 border border-dashed w-full h-[200px] rounded-lg relative overflow-hidden z-0">
-              <img src="${project?.fileUrl}" alt="" class='w-full h-full object-cover urlLinkProject'>
+            <div class="group cursor-pointer flex items-center justify-center bg-gray-100 border border-dashed w-full h-full rounded-lg relative overflow-hidden z-0">
+              <div class='slider overflow-hidden bg-gray-100 p-4'>
+                <div class="slider-for mb-10 shadow-lg w-full h-[200px]">
+                  ${project?.fileUrl
+										?.map((image) => {
+											return /* html */ `
+                    <div>
+                      <img src="${image}" class='block max-w-full h-full object-cover' alt="${image}">
+                    </div>
+                    `;
+										})
+										.join('')}
+                </div>
+                <div class="slider-nav text-center">
+                  ${project?.fileUrl
+										?.map((image) => {
+											return /* html */ `
+                    <div>
+                      <img src="${image}" class='inline-block mx-4 shadow max-w-full h-auto border-2 border-solid border-white cursor-pointer opacity-50 hover:opacity-100' alt="${image}">
+                    </div>
+                    `;
+										})
+										.join('')}
+                </div>
+              </div>
             </div>
           </div>
         </div>

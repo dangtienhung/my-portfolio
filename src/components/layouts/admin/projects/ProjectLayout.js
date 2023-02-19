@@ -3,7 +3,7 @@ import {
 	getAllProjects,
 	getOneProject,
 } from '../../../../api/config-project';
-import { useEffect, useState } from '../../../../config/config';
+import { router, useEffect, useState } from '../../../../config/config';
 
 import Swal from 'sweetalert2';
 
@@ -62,18 +62,8 @@ const ProjectLayout = () => {
 		const modalContainer = document.querySelector('.modal-container');
 		preview.forEach((previewItem) => {
 			previewItem.addEventListener('click', (e) => {
-				e.preventDefault();
 				const id = previewItem.dataset.id;
-				modal.classList.remove('hidden');
-				modalContainer.classList.remove('hidden');
-				(async () => {
-					try {
-						const { data } = await getOneProject(id);
-						setPreview(data);
-					} catch (error) {
-						console.log(error);
-					}
-				})();
+				window.location = `/project/${id}`;
 			});
 		});
 	});
@@ -173,12 +163,6 @@ const ProjectLayout = () => {
 							.join('')}
           </body>
         </table>
-      </div>
-    </div>
-    <div class="hidden modal bg-black opacity-60 fixed inset-0 z-[1000]"></div>
-    <div class="hidden modal-container bg-white h-[90vh] w-[90vw] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1001] rounded-lg p-4">
-      <div class="grid xl:grid-cols-2 grid-cols-1 gap-x-4">
-        <img src="${preview?.fileUrl}" alt="" class="wfull">
       </div>
     </div>
   `;

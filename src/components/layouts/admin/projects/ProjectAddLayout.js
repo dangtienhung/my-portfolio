@@ -60,7 +60,6 @@ const ProjectAddLayout = () => {
 				techonology,
 				category,
 				description,
-				category,
 				linkWebsite,
 				fileUrl: urls,
 			};
