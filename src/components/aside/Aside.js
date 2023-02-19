@@ -93,7 +93,6 @@ const Aside = () => {
 			}
 		})();
 	}, []);
-	console.log('🚀 ~ file: Aside.js:85 ~ Aside ~ userInfoData', userInfoData);
 	return /* html */ `
   <div class='w-full max-w-[300px] hidden lg:block'>
 		<div class='w-full px-4 bg-lightMode min-h-screen'>

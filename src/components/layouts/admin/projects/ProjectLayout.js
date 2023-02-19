@@ -6,6 +6,7 @@ import {
 import { router, useEffect, useState } from '../../../../config/config';
 
 import Swal from 'sweetalert2';
+import { getAllCategories } from '../../../../api/config-categories';
 
 const ProjectLayout = () => {
 	const [projects, setProjects] = useState([]);
@@ -58,8 +59,6 @@ const ProjectLayout = () => {
 	});
 	useEffect(() => {
 		const preview = document.querySelectorAll('.preview');
-		const modal = document.querySelector('.modal');
-		const modalContainer = document.querySelector('.modal-container');
 		preview.forEach((previewItem) => {
 			previewItem.addEventListener('click', (e) => {
 				const id = previewItem.dataset.id;
@@ -67,6 +66,19 @@ const ProjectLayout = () => {
 			});
 		});
 	});
+	const [categories, setCategories] = useState([]);
+	useEffect(() => {
+		(async () => {
+			try {
+				const res = await getAllCategories();
+				if (res && res.data) {
+					setCategories(res.data);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		})();
+	}, []);
 	return /* html */ `
     <div class='flex-1 p-4 bg-lightMode rounded-lg shadow-lg overflow-hidden'>
       <div>
@@ -95,11 +107,15 @@ const ProjectLayout = () => {
 									dateStart: project?.dateStart.replace(/-/g, '/'),
 									dateEnd: project?.dateEnd.replace(/-/g, '/'),
 								};
+								const titleCategory = categories.filter(
+									(category) =>
+										Number(category.id) === Number(project.categoryId)
+								);
 								return /* html */ `
                     <tr class='even:bg-lightMode'>
-                      <td class="whitespace-nowrap py-4 px-7">${
-												index < 10 ? `0${index + 1}` : index + 1
-											}</td>
+                      <td class="whitespace-nowrap py-4 px-7">
+                        ${index < 10 ? `0${index + 1}` : index + 1}
+                      </td>
                       <td class="block py-4 w-full min-w-[300px]">
                         <div class="flex items-center gap-x-3">
                           <img
@@ -116,20 +132,23 @@ const ProjectLayout = () => {
                         </div>
                       </td>
                       <td class="py-4 px-7 w-full min-w-[100px]">
-                        <a href="${project.linkProject}">${
-									project.linkProject
-								}</a>
+                        <a
+                          href="${project.linkProject}"
+                        >
+                          ${project.linkProject}
+                        </a>
                       </td>
-                      <td class="py-4 px-7 w-full min-w-[100px]">
-                        <a href="${project.linkWebsite || '#'}">${
-									project.linkWebsite || 'Dự án chưa được deploy'
-								}</a>
+                      <td class="py-4 px-7 w-full min-w-[200px] inline-block">
+                        <a
+                          href="${project.linkWebsite || '#'}">
+                          ${project.linkWebsite || 'Dự án chưa được deploy'}
+                        </a>
                       </td>
                       <td class="whitespace-nowrap py-4 px-7">
                         <p>${project.techonology}</p>
                       </td>
                       <td class="whitespace-nowrap py-4 px-7">
-                        <p>${project.category}</p>
+                        <p>${titleCategory[0].title}</p>
                       </td>
                       <td class="py-4 px-2 w-full min-w-[300px] overflow-hidden !h-28">
                         <p class='overflow-y-auto w-full h-full'>${

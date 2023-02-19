@@ -1,8 +1,9 @@
 import { useEffect, useState } from '../../../config/config';
 
+import axios from 'axios';
 import { getAllProjects } from '../../../api/config-project';
 
-const ExperienceLayout = () => {
+const ExperienceLayout = ({ categories }) => {
 	const [projects, setProjects] = useState([]);
 	useEffect(() => {
 		(async () => {
@@ -14,11 +15,40 @@ const ExperienceLayout = () => {
 			}
 		})();
 	}, []);
+	useEffect(() => {
+		const btns = document.querySelectorAll('.btn-handle');
+		for (const btn of btns) {
+			btn.addEventListener('click', () => {
+				const id = btn.dataset.id;
+				(async () => {
+					const res = await axios.get(
+						`http://localhost:3000/categories/${id}?_embed=projects`
+					);
+					if (res && res.data) {
+						setProjects(res.data.projects);
+					}
+				})();
+			});
+		}
+	});
 	return /* html */ `
     <section class='px-[4%] py-20 min-h-screen' id='experience'>
       <h4 class="onscrool-text -translate-x-[150%] uppercase text-sm text-gray-400 transition-all duration-1000">EXPERIENCE</h4>
       <h2 class='onscrool-text -translate-x-[150%] uppercase text-3xl font-medium mt-8 leading-10 transition-all duration-1000'>WORK EXPERIENCE</h2>
       <p class='onscrool-text -translate-x-[150%] mt-10 transition-all duration-1000'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae voluptate rerum aperiam officiis delectus, animi optio qui dolorum hic eligendi nulla adipisci! Nulla possimus cumque quisquam porro facilis inventore sunt.</p>
+      <div class='mb-10 flex mt-10'>
+        ${categories
+					.map((category) => {
+						return /* html */ `
+              <div
+                data-id='${category.id}'
+                class='btn-handle py-2 px-6 rounded-sm text-xl bg-gray-100 inline-block border-b-2 border-r-2 cursor-pointer !last-child:border-r-0'>
+                <p class='capitalize'>${category.title}</p>
+              </div>
+            `;
+					})
+					.join('')}
+      </div>
       <div class="onscrool-text -translate-x-[150%] grid grid-cols-2 gap-10 mt-12">
         ${projects
 					?.map((project) => {
@@ -67,6 +97,7 @@ const ExperienceLayout = () => {
           `;
 					})
 					.join('')}
+      </div>
     </section>
   `;
 };

@@ -1,5 +1,6 @@
 import { useEffect, useState } from '../../../config/config';
 
+import { getAllCategories } from '../../../api/config-categories';
 import { getOneProject } from '../../../api/config-project';
 
 const ProjectLayout = (params) => {
@@ -7,11 +8,18 @@ const ProjectLayout = (params) => {
 		data: { idProject },
 	} = params;
 	const [project, setProject] = useState([]);
+	const [categories, setCategories] = useState([]);
+	console.log(
+		'🚀 ~ file: ProjectLayout.js:12 ~ ProjectLayout ~ categories',
+		categories
+	);
 	useEffect(() => {
 		(async () => {
 			try {
 				const { data } = await getOneProject(idProject);
+				const res = await getAllCategories();
 				setProject(data);
+				setCategories(res.data);
 			} catch (error) {
 				console.log(error);
 			}
@@ -44,7 +52,7 @@ const ProjectLayout = (params) => {
 	return /* html */ `
     <div class='flex-1 bg-gray-50'>
       <div class="h-screen xl:overflow-y-scroll">
-        <div class='flex overflow-x-auto justify-end flex-col relative min-h-screen w-full px-[4%] py-20'>
+        <div class='flex overflow-x-auto justify-end flex-col relative min-h-screen w-full px-[4%] py-16'>
           <div class='z-10 grid grid-cols-2 gap-x-10'>
             <div>
               <h2><span class='capitalize font-semibold text-4xl'>${
@@ -107,6 +115,7 @@ const ProjectLayout = (params) => {
             </div>
           </div>
           <div class='mt-12'>
+            <h1 class="capitalize text-2xl font-semibold mb-4">Mô tả dự án</h1>
             <p>${project?.description?.replace(/[\r\n]/g, '<br/>')}</p>
           </div>
         </div>

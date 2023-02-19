@@ -11,6 +11,7 @@ import { getOneProject, updateProject } from '../../../../api/config-project';
 
 import Toastify from 'toastify-js';
 import axios from 'axios';
+import { getAllCategories } from '../../../../api/config-categories';
 
 const ProjectEditLayout = (params) => {
 	const {
@@ -62,7 +63,8 @@ const ProjectEditLayout = (params) => {
 			let dateStart = document.querySelector('#date-start').value;
 			let dateEnd = document.querySelector('#date-end').value;
 			let techonology = document.querySelector('#techonology').value;
-			let category = document.querySelector('#category').value;
+			let categoryId = document.querySelector('#category').value;
+			categoryId = Number(categoryId);
 			let description = document.querySelector('#description').value;
 			let linkWebsite = document.querySelector('#linkWebsite').value;
 
@@ -73,7 +75,7 @@ const ProjectEditLayout = (params) => {
 				dateStart,
 				dateEnd,
 				techonology,
-				category,
+				categoryId,
 				description,
 				fileUrl,
 				linkWebsite,
@@ -95,6 +97,19 @@ const ProjectEditLayout = (params) => {
 			})();
 		});
 	});
+	const [categories, setCategories] = useState([]);
+	useEffect(() => {
+		(async () => {
+			try {
+				const res = await getAllCategories();
+				if (res && res.data) {
+					setCategories(res.data);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		})();
+	}, []);
 	useEffect(() => {
 		$(document).ready(function () {
 			// Initialize slick slider for main slider
@@ -178,11 +193,24 @@ const ProjectEditLayout = (params) => {
           </div>
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>category</label>
-            <input
-              type="text" name="" id="category" value='${project?.category}'
-              class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
-              placeholder='Category'
-            />
+            <select name="" id="category" class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none">
+              ${categories
+								.map((category) => {
+									return /* html */ `
+                  <option
+                    value="${category.id}"
+                    ${
+											Number(category.id) == Number(project.categoryId)
+												? 'selected'
+												: ''
+										}
+                  >
+                    ${category.title}
+                  </option>;
+                `;
+								})
+								.join('')}
+            </select>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-x-4">

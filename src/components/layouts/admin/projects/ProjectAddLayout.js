@@ -1,26 +1,35 @@
+import 'toastify-js/src/toastify.css';
+
 import {
 	COULD_NAME,
 	PRESET_NAME,
 	router,
 	useEffect,
+	useState,
 } from '../../../../config/config';
 
+import Toastify from 'toastify-js';
 import { addProject } from '../../../../api/config-project';
 import axios from 'axios';
+import { getAllCategories } from '../../../../api/config-categories';
 
 const ProjectAddLayout = () => {
+	const [categories, setCategories] = useState([]);
+	useEffect(() => {
+		(async () => {
+			try {
+				const res = await getAllCategories();
+				if (res && res.data) {
+					setCategories(res.data);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		})();
+	}, []);
 	useEffect(() => {
 		const form = document.querySelector('#form');
 		let image = document.querySelector('#image');
-		// let file, fileUrl;
-		// image.addEventListener('change', (e) => {
-		// 	file = e.target.files[0];
-		// 	const reader = new FileReader();
-		// 	reader.readAsDataURL(file);
-		// 	reader.onload = () => {
-		// 		fileUrl = reader.result;
-		// 	};
-		// });
 		const uploadAvatar = async (files) => {
 			if (files) {
 				const folder_name = 'portfolio';
@@ -48,7 +57,8 @@ const ProjectAddLayout = () => {
 			let dateStart = document.querySelector('#date-start').value;
 			let dateEnd = document.querySelector('#date-end').value;
 			let techonology = document.querySelector('#techonology').value;
-			let category = document.querySelector('#category').value;
+			let categoryId = document.querySelector('#category').value;
+			categoryId = Number(categoryId);
 			let description = document.querySelector('#description').value;
 			let linkWebsite = document.querySelector('#linkWebsite').value;
 			const urls = await uploadAvatar(image.files);
@@ -58,7 +68,7 @@ const ProjectAddLayout = () => {
 				dateStart,
 				dateEnd,
 				techonology,
-				category,
+				categoryId,
 				description,
 				linkWebsite,
 				fileUrl: urls,
@@ -70,7 +80,14 @@ const ProjectAddLayout = () => {
 			(async () => {
 				try {
 					await addProject(data);
-					// router.navigate('/admin/projects');
+					Toastify({
+						text: 'Thêm danh mục thành công!',
+						style: {
+							background: 'linear-gradient(to right, #00b09b, #96c93d)',
+						},
+						position: 'left',
+						duration: 3000,
+					}).showToast();
 					window.location = '/admin/projects';
 				} catch (error) {
 					console.log(error);
@@ -135,11 +152,15 @@ const ProjectAddLayout = () => {
         <div class="grid xl:grid-cols-2 grid-cols-1 gap-x-4">
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>category</label>
-            <input
-              type="text" name="" id="category"
-              class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
-              placeholder='Category'
-            />
+            <select name="" id="category" class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none">
+              ${categories
+								.map((category) => {
+									return /* html */ `
+                  <option value="${category.id}">${category.title}</option>;
+                `;
+								})
+								.join('')}
+            </select>
           </div>
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>hình ảnh mô tả dự án</label>
