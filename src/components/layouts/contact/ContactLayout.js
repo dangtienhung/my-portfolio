@@ -1,4 +1,14 @@
-import { useEffect, useState } from '../../../config/config';
+import 'toastify-js/src/toastify.css';
+
+import {
+	serviceEmailId,
+	templateEmailId,
+	useEffect,
+	useState,
+} from '../../../config/config';
+
+import Toastify from 'toastify-js';
+import emailjs from '@emailjs/browser';
 
 const ContactLayout = () => {
 	const [userInfo, setUserInfo] = useState([]);
@@ -6,6 +16,36 @@ const ContactLayout = () => {
 		const data = JSON.parse(localStorage.getItem('userInfo'));
 		setUserInfo(data);
 	}, []);
+	useEffect(() => {
+		const form = document.querySelector('.form');
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			let name = document.querySelector('#name').value;
+			let email = document.querySelector('#email').value;
+			let message = document.querySelector('#message').value;
+			const data = { name, email, message };
+			console.log(data);
+			emailjs
+				.send(serviceEmailId, templateEmailId, data, 'gPLE539ysFSTppFrY')
+				.then(
+					function (response) {
+						Toastify({
+							text: 'Gửi tin nhắn thành công!',
+							style: {
+								background: 'linear-gradient(to right, #00b09b, #96c93d)',
+							},
+						}).showToast();
+						console.log('SUCCESS!', response.status, response.text);
+						name = '';
+						email = '';
+						message = '';
+					},
+					function (err) {
+						console.log('FAILED...', err);
+					}
+				);
+		});
+	});
 	return /* html */ `
     <section class='px-[4%] py-20 min-h-screen' id='contact'>
       <h4 class="onscrool-text -translate-x-[150%] uppercase text-sm text-gray-400 transition-all duration-1000">GET IN TOUCH</h4>
@@ -54,17 +94,13 @@ const ContactLayout = () => {
           </div>
         </section>
         <section>
-          <form autocomplete="off">
+          <form autocomplete="off" class='form'>
             <div class='mb-10'>
-              <input type="name" name="name" placeholder='Name' class='ct-input'/>
+              <input type="text" id='name' name="" placeholder='Name' class='ct-input'/>
               <span class="text-red-500 text-sm"></span>
             </div>
             <div class='mb-10'>
               <input type="email" name="email" id="email" placeholder='Email' class='ct-input'/>
-              <span class="text-red-500 text-sm"></span>
-            </div>
-            <div class='mb-10'>
-              <input type="text" name="subject" id="subject" placeholder='Subject'class='ct-input'/>
               <span class="text-red-500 text-sm"></span>
             </div>
             <div class='mb-10'>

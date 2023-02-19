@@ -7,6 +7,8 @@ export const avatarDefault =
 
 export const COULD_NAME = 'dcwdrvxdg';
 export const PRESET_NAME = 'imageStorePorfolio';
+export const serviceEmailId = 'service_tysvtw8';
+export const templateEmailId = 'template_uqp0ysg';
 
 let effects = [];
 let currentEffectOrder = 0;
