@@ -10,3 +10,6 @@ export { default as EducateAddNew } from './Education/EducateAddNew';
 export { default as EducateEdit } from './Education/EducateEdit';
 export { default as SkillLayoutAdmin } from './skill/SkillLayoutAdmin';
 export { default as SkillAddLayout } from './skill/SkillAddLayout';
+export { default as CategoriesLayout } from './categories/CategoriesLayout';
+export { default as CategoryAddNew } from './categories/CategoryAddNew';
+export { default as CategoryEditLayout } from './categories/CategoryEditLayout';

@@ -19,3 +19,6 @@ export { default as EducationAdd } from './admin/education/EducationAdd';
 export { default as EducationEditPage } from './admin/education/EducationEditPage';
 export { default as SkillPageAdmin } from './admin/Skill/SkillPage';
 export { default as SkillAddPage } from './admin/Skill/SkillAddPage';
+export { default as Categories } from './admin/categories/Categories';
+export { default as CategoryAdd } from './admin/categories/CategoryAdd';
+export { default as CategoryEdit } from './admin/categories/CategoryEdit';

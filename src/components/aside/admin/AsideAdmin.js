@@ -24,6 +24,11 @@ const links = [
 		title: 'Liên hệ',
 		to: '/admin/contact',
 	},
+	{
+		id: 7,
+		title: 'Categories',
+		to: '/admin/categories',
+	},
 ];
 
 const AsideAdmin = () => {

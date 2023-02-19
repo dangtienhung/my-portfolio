@@ -2,6 +2,9 @@ import './style.scss';
 
 import {
 	AboutUsPage,
+	Categories,
+	CategoryAdd,
+	CategoryEdit,
 	ContactPage,
 	Dashboard,
 	EducationAdd,
@@ -58,7 +61,11 @@ router.on('/admin/education/edit/:idEducate', (params) =>
 router.on('/admin/skills', () => render(SkillPageAdmin, app));
 router.on('/admin/skills/add', () => render(SkillAddPage, app));
 router.on('/admin/skill/edit/:idSkill');
-
+router.on('/admin/categories', () => render(Categories, app));
 router.notFound(() => render(NotFound, app));
+router.on('/admin/category/add-new', () => render(CategoryAdd, app));
+router.on('/admin/category/edit/:id', (params) =>
+	render(() => CategoryEdit(params), app)
+);
 
 router.resolve();
