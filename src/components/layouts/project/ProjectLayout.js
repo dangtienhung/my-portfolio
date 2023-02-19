@@ -17,9 +17,32 @@ const ProjectLayout = (params) => {
 			}
 		})();
 	}, []);
+	useEffect(() => {
+		$(document).ready(function () {
+			// Initialize slick slider for main slider
+			$('.slider-for').slick({
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				fade: true,
+				asNavFor: '.slider-nav',
+			});
 
+			// Initialize slick slider for navigation slider
+			$('.slider-nav').slick({
+				autoplay: true,
+				autoplaySpeed: 3000,
+				slidesToShow: 4,
+				slidesToScroll: 1,
+				asNavFor: '.slider-for',
+				dots: false,
+				centerMode: false,
+				focusOnSelect: true,
+			});
+		});
+	});
 	return /* html */ `
-    <div class='flex-1 bg-white'>
+    <div class='flex-1 bg-gray-50'>
       <div class="h-screen xl:overflow-y-scroll">
         <div class='flex overflow-x-auto justify-end flex-col relative min-h-screen w-full px-[4%] py-20'>
           <div class='z-10 grid grid-cols-2 gap-x-10'>
@@ -58,12 +81,29 @@ const ProjectLayout = (params) => {
                 </span>
               </p>
             </div>
-            <div class='rounded-lg overflow-hidden'>
-              <img
-                src="${project?.fileUrl}"
-                alt="${project?.nameProject}"
-                class='rounded-lg w-full h-[300px] object-cover'
-              />
+            <div class='slider overflow-hidden bg-gray-100 p-4'>
+              <div class="slider-for mb-10 shadow-lg w-full">
+                ${project?.fileUrl
+									?.map((image) => {
+										return /* html */ `
+                  <div>
+                    <img src="${image}" class='block max-w-full h-auto' alt="${image}">
+                  </div>
+                  `;
+									})
+									.join('')}
+              </div>
+              <div class="slider-nav text-center">
+                ${project?.fileUrl
+									?.map((image) => {
+										return /* html */ `
+                  <div>
+                    <img src="${image}" class='inline-block mx-4 shadow max-w-full h-auto border-2 border-solid border-white cursor-pointer opacity-50 hover:opacity-100' alt="${image}">
+                  </div>
+                  `;
+									})
+									.join('')}
+              </div>
             </div>
           </div>
           <div class='mt-12'>

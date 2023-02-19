@@ -85,16 +85,9 @@ const Aside = () => {
 	useEffect(() => {
 		(async () => {
 			try {
-				const data = JSON.parse(localStorage.getItem('userInfo'));
-				if (data.id || data[0].id) {
-					const userInfo = await getUserInfo(data.id || data[0].id);
-					if (userInfo) {
-						setUserInfoData(userInfo.data);
-						localStorage.setItem('userInfo', JSON.stringify(userInfo.data));
-					}
-				} else {
-					window.location = '/admin/sign-in';
-				}
+				const respon = await getUserInfo(1);
+				setUserInfoData(respon.data);
+				localStorage.setItem('userInfo', JSON.stringify(userInfo.data));
 			} catch (error) {
 				console.log(error);
 			}
