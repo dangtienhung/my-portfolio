@@ -24,6 +24,7 @@ import {
 	SkillPage,
 	SkillPageAdmin,
 	UserEdit,
+	UserEditPasswordPage,
 	UserPage,
 } from './pages';
 
@@ -52,7 +53,9 @@ router.on('/admin/project/edit/:idProject', (params) =>
 	render(() => ProjectEditPage(params), app)
 );
 router.on('/admin/user', () => render(UserPage, app));
-router.on('/admin/user/edit', () => render(UserEdit, app));
+router.on('/admin/user/edit/:id', (params) =>
+	render(() => UserEdit(params), app)
+);
 router.on('/admin/education', () => render(EducationAdmin, app));
 router.on('/admin/education/add', () => render(EducationAdd, app));
 router.on('/admin/education/edit/:idEducate', (params) =>
@@ -66,6 +69,9 @@ router.notFound(() => render(NotFound, app));
 router.on('/admin/category/add-new', () => render(CategoryAdd, app));
 router.on('/admin/category/edit/:id', (params) =>
 	render(() => CategoryEdit(params), app)
+);
+router.on('/admin/user/edit-password/:id', (params) =>
+	render(() => UserEditPasswordPage(params), app)
 );
 
 router.resolve();

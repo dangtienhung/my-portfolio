@@ -22,3 +22,4 @@ export { default as SkillAddPage } from './admin/Skill/SkillAddPage';
 export { default as Categories } from './admin/categories/Categories';
 export { default as CategoryAdd } from './admin/categories/CategoryAdd';
 export { default as CategoryEdit } from './admin/categories/CategoryEdit';
+export { default as UserEditPasswordPage } from './admin/users/UserEditPasswordPage';

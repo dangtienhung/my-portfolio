@@ -104,7 +104,10 @@ const UserLayout = () => {
 					>${info.descriptionInfo}</textarea>
 				</div>
 			</div>
-			<a href="/admin/user/edit" class='inline-block py-2 px-6 rounded bg-blue-500 cursor-pointer text-white mb-4'>Cập nhật thông tin</a>
+      <a href="/admin/user/edit-password/${info.id}"
+        class='inline-block py-2 px-6 rounded bg-blue-500 cursor-pointer text-white mb-4'>Thay đổi mật khẩu</a>
+			<a href="/admin/user/edit/${info.id}"
+        class='inline-block py-2 px-6 rounded bg-blue-500 cursor-pointer text-white mb-4'>Cập nhật thông tin</a>
 		</div>
 	`;
 };
