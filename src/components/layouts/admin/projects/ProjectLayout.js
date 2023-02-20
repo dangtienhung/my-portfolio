@@ -2,6 +2,7 @@ import {
 	deleteProject,
 	getAllProjects,
 	getOneProject,
+	searchProject,
 } from '../../../../api/config-project';
 import { router, useEffect, useState } from '../../../../config/config';
 
@@ -9,20 +10,22 @@ import Swal from 'sweetalert2';
 import { getAllCategories } from '../../../../api/config-categories';
 
 const ProjectLayout = () => {
+	const itemsPerPage = 2;
+	let currentPage = 1;
+	const [paginate, setPaginate] = useState([]);
 	const [projects, setProjects] = useState([]);
-	const [preview, setPreview] = useState({});
-	useEffect(() => {
-		(async () => {
-			try {
-				const { data } = await getAllProjects();
-				if (data && data.length > 0) {
-					setProjects(data);
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	}, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 		try {
+	// 			const { data } = await getAllProjects();
+	// 			if (data && data.length > 0) {
+	// 				setProjects(data);
+	// 			}
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	})();
+	// }, []);
 	useEffect(() => {
 		const btnDelete = document.querySelectorAll('.btn-delete');
 		if (btnDelete) {
@@ -79,12 +82,66 @@ const ProjectLayout = () => {
 			}
 		})();
 	}, []);
+	const displayPagination = (totalPages) => {
+		const paginate = document.querySelector('.paginate');
+		paginate.innerHTML = '';
+		let urls = [];
+		for (let i = 0; i < totalPages; i++) {
+			urls.push(i);
+		}
+		setPaginate(urls);
+	};
+	const fetchData = () => {
+		fetch(
+			`http://localhost:3000/projects?_page=${currentPage}&_limit=${itemsPerPage}`
+		)
+			.then((respon) => {
+				const totalCount = respon.headers.get('X-Total-Count');
+				const totalPage = Math.ceil(totalCount / itemsPerPage);
+				displayPagination(totalPage);
+				return respon.json();
+			})
+			.then((data) => {
+				setProjects(data);
+			});
+	};
+	useEffect(() => {
+		fetchData();
+	}, []);
+	useEffect(() => {
+		const btnPagination = document.querySelectorAll('.btn-pagination');
+		btnPagination.forEach((paginate, index) => {
+			paginate.addEventListener('click', (e) => {
+				e.preventDefault();
+				currentPage = index + 1;
+				fetchData();
+			});
+		});
+	});
+	useEffect(async () => {
+		try {
+			const search = document.querySelector('.search');
+			search.addEventListener('change', async () => {
+				const respon = await searchProject(search.value);
+				if (respon) {
+					console.log(
+						'🚀 ~ file: ProjectLayout.js:131 ~ search.addEventListener ~ respon:',
+						respon
+					);
+					setProjects(respon.data);
+				}
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	});
 	return /* html */ `
     <div class='flex-1 p-4 bg-lightMode rounded-lg shadow-lg overflow-hidden'>
-      <div>
+      <div class='flex md:justify-end'>
         <button class='xl:hidden inline-block mb-4'>
           <a href="/admin/project/add-new" class="inline-block bg-blue-400 outline-none py-3 px-8 text-white capitalize rounded">Thêm dự án</a>
         </button>
+        <input type="text" placeholder='Search...' class='search p-2 mb-5 rounded-sm outline-none w-full max-w-xs border border-gray-500'>
       </div>
       <div class="overflow-x-scroll rounded-lg bg-white shadow-md scroll-smooth">
         <table class='w-full'>
@@ -114,7 +171,7 @@ const ProjectLayout = () => {
 								return /* html */ `
                     <tr class='even:bg-lightMode'>
                       <td class="whitespace-nowrap py-4 px-7">
-                        ${index < 10 ? `0${index + 1}` : index + 1}
+                        ${project.id}
                       </td>
                       <td class="block py-4 w-full min-w-[300px]">
                         <div class="flex items-center gap-x-3">
@@ -182,6 +239,24 @@ const ProjectLayout = () => {
 							.join('')}
           </body>
         </table>
+      </div>
+      <div class='my-8 text-center'>
+        <ul class="inline-flex -space-x-px paginate">
+          ${paginate
+						.map((item) => {
+							return /* html */ `
+              <li>
+                <a
+                  href="${item + 1}"
+                  class="btn-pagination px-3 mx-2 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  ${item + 1}
+                </a>
+              </li>
+            `;
+						})
+						.join('')}
+        </ul>
       </div>
     </div>
   `;

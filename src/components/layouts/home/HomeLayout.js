@@ -1,13 +1,23 @@
-import { useEffect } from '../../../config/config';
+import { useEffect, useState } from '../../../config/config';
 
 const HomeLayout = () => {
+	const [userInfo, setUserInfo] = useState([]);
+	console.log('🚀 ~ file: HomeLayout.js:5 ~ HomeLayout ~ userInfo:', userInfo);
+	useEffect(() => {
+		const data = JSON.parse(localStorage.getItem('userInfo'));
+		if (data) {
+			(async () => {
+				setUserInfo(data);
+			})();
+		}
+	}, []);
 	return /* html */ `
   <section class='w-full relative slider-item duration-1000 transition-all' id='home'>
     <div class="slider-main" style='transition: transform 0.25s linear;'>
       <div class="select-none">
         <div class='grid lg:grid-cols-1 xl:grid-cols-2 xl:gap-x-14'>
           <div></div>
-          <img src="/assets/images/zalo1-removebg.png"
+          <img src="${userInfo.avatar}"
             alt=""
             class='w-full h-screen object-cover'
           />

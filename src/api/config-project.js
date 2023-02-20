@@ -19,3 +19,8 @@ export const addProject = (newProject) => {
 export const deleteProject = (id) => {
 	return instance.delete(`/projects/${id}`);
 };
+
+// search projects
+export const searchProject = (search) => {
+	return instance.get(`/projects?q=${search}`);
+};
