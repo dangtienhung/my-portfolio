@@ -31,6 +31,56 @@
         "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676821514/portfolio/inhykea6ibrdyw6i4dyy.png"
       ],
       "id": 2
+    },
+    {
+      "nameProject": "tailwind-coffee",
+      "linkProject": "https://github.com/dangtienhung/tailwindcss-coffee.git",
+      "dateStart": "2022-10-21",
+      "dateEnd": "2022-10-24",
+      "techonology": "html",
+      "categoryId": 1,
+      "description": "tailwindcss coffee",
+      "linkWebsite": "https://tailwindcss-coffee.vercel.app/",
+      "fileUrl": [
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676871596/portfolio/dbm6epvju8rtw1t0vww0.png",
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676871598/portfolio/jlz0a4nuol6exkirve4u.png",
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676871601/portfolio/zdsbnyonulxacdymc4lj.png"
+      ],
+      "id": 3
+    },
+    {
+      "nameProject": "youtube-clone",
+      "linkProject": "https://github.com/dangtienhung/youtube-clone.git",
+      "dateStart": "2022-12-27",
+      "dateEnd": "2022-12-27",
+      "techonology": "reactjs, mui-design",
+      "categoryId": 2,
+      "description": "dự án dùng react + mui",
+      "linkWebsite": "https://youtube-material-design.vercel.app",
+      "fileUrl": [
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676872470/portfolio/bviivlnx9heauu99mzih.png",
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676872477/portfolio/m8qhzxzk84yhljd8b4tm.png",
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676872484/portfolio/xcjvs00aizy7iav1vv2c.png"
+      ],
+      "id": 4
+    },
+    {
+      "nameProject": "dự án 3",
+      "linkProject": "link dự án 3",
+      "dateStart": "2022-04-23",
+      "dateEnd": "2023-02-13",
+      "techonology": "css",
+      "categoryId": 2,
+      "description": "asdf;lkasdfkljasdf",
+      "linkWebsite": "link website 3",
+      "fileUrl": [
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676876533/portfolio/xrl1kpxhpehllidercya.png",
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676876534/portfolio/jjgeabon10vugagbnhk9.png",
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676876536/portfolio/sbk1xf9zj2ct9hg6g4kx.png",
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676876539/portfolio/yd8prxnvh6ryikhycw7p.png",
+        "https://res.cloudinary.com/dcwdrvxdg/image/upload/v1676876541/portfolio/fzgxlawbbftasppu13d6.png"
+      ],
+      "id": 5
     }
   ],
   "users": [
@@ -46,8 +96,14 @@
       "github": "https://github.com/dangtienhung",
       "facebook": "https://www.facebook.com/danghung23624",
       "descriptionInfo": "Xin chào, tôi là Đặng Tiến Hưng, một sinh viên tại FPT Polytechnic, đã học chuyên ngành Lập trình Website trong 2 năm 4 tháng. Tôi đến từ Nam Định.\nTôi vừa mới tốt nghiệp, chưa có kinh nghiệm làm việc thực tế. Tuy nhiên, trong quá trình học tập tại trường, tôi đã tích lũy được nhiều kiến thức và kỹ năng chuyên môn về lập trình website, cũng như tham gia vào nhiều dự án thực tế để rèn luyện tư duy logic và kỹ năng làm việc nhóm. \nTôi có đam mê và nhiệt huyết trong công việc, luôn sẵn sàng học hỏi và thích thử thách bản thân để phát triển kỹ năng của mình. \nTôi tin rằng với sự nỗ lực và sự hỗ trợ của đồng nghiệp trong công ty, tôi sẽ sớm có được kinh nghiệm cần thiết để đóng góp cho công ty và phát triển sự nghiệp của mình.",
-      "createdAt": "2023-02-18T01:35:06.478Z",
+      "createdAt": "2023-02-20T07:19:19.639Z",
       "id": 1
+    },
+    {
+      "email": "hungdtph23624@fpt.edu.vn",
+      "password": "hungdtph23624",
+      "createdAt": "2023-02-20T05:29:44.406Z",
+      "id": 2
     }
   ],
   "education": [
@@ -65,6 +121,11 @@
       "title": "HTML, CSS, JS",
       "description": "Creating web and mobile applications \nMaintaining, optimizing, troubleshooting, and improving websites \nImplementation of apps and landing pages from concept through deployment ",
       "id": 1
+    },
+    {
+      "title": "rectjs",
+      "description": "kỹ năng reactjs",
+      "id": 2
     }
   ],
   "categories": [

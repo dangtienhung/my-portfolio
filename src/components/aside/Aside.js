@@ -87,7 +87,7 @@ const Aside = () => {
 			try {
 				const respon = await getUserInfo(1);
 				setUserInfoData(respon.data);
-				localStorage.setItem('userInfo', JSON.stringify(userInfo.data));
+				localStorage.setItem('userInfo', JSON.stringify(respon.data));
 			} catch (error) {
 				console.log(error);
 			}

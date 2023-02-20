@@ -12,7 +12,7 @@ const SkillLayout = () => {
 				e.preventDefault();
 				abcd[index].classList.toggle('hidden');
 				item.classList.toggle('!bg-blue-500');
-				item.classList.toggle('!text-white');
+				item.classList.toggle('!text-black');
 				if (!abcd[index].classList.contains('hidden')) {
 					abcd[index].classList.remove('-translate-y-10');
 				}
@@ -38,10 +38,11 @@ const SkillLayout = () => {
       <h2 class='onscrool-text -translate-x-[150%] uppercase text-3xl font-medium mt-8 leading-10 transition-all duration-1000'>MY SKILLS</h2>
       <p class='onscrool-text -translate-x-[150%] mt-10 transition-all duration-1000'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae voluptate rerum aperiam officiis delectus, animi optio qui dolorum hic eligendi nulla adipisci! Nulla possimus cumque quisquam porro facilis inventore sunt.</p>
       <div class="mt-10 transition-all duration-500">
-        ${skills.map((skill) => {
-					return /* html */ `
+        ${skills
+					.map((skill) => {
+						return /* html */ `
             <div class="onscrool-text -translate-x-[150%] transition-all duration-1000 bg-white p-1 rounded-sm">
-              <h2 class='ac-header text-base font-medium p-3 bg-gray-200 transition-all duration-300 rounded-sm cursor-pointer flex justify-between items-center'>
+              <h2 class='ac-header !bg-blue-500 text-white text-base font-medium p-3 bg-gray-200 transition-all duration-300 rounded-sm cursor-pointer flex justify-between items-center'>
                 <p class='font-semibold capitalize'>${skill.title}</p>
                 <img src="/assets/images/exam-unscreen.gif" alt="" class='h-6 w-6 object-cover'/>
               </h2>
@@ -54,7 +55,8 @@ const SkillLayout = () => {
               </div>
             </div>
           `;
-				})}
+					})
+					.join('')}
       </div>
     </section>
   `;

@@ -20,11 +20,6 @@ const links = [
 		to: '/admin/skills',
 	},
 	{
-		id: 6,
-		title: 'Liên hệ',
-		to: '/admin/contact',
-	},
-	{
 		id: 7,
 		title: 'Categories',
 		to: '/admin/categories',

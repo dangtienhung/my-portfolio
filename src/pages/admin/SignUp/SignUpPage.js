@@ -15,7 +15,7 @@ const SignUpPage = () => {
 				backgroundColor: 'rgb(59 130 246)',
 			}).showToast();
 			localStorage.setItem('userInfo', JSON.stringify(data));
-			window.location = '/admin/dashboard';
+			window.location = '/admin/projects';
 		} catch (error) {
 			console.log(error);
 		}

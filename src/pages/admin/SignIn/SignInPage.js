@@ -15,7 +15,7 @@ const SignInPage = () => {
 					backgroundColor: 'orange',
 				}).showToast();
 				localStorage.setItem('userInfo', JSON.stringify(response.data));
-				window.location = '/admin/dashboard';
+				window.location = '/admin/projects';
 			} else {
 				Toastify({
 					text: 'Tài khoản or mật khẩu không đúng!',

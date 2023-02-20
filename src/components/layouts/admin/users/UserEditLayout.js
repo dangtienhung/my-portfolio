@@ -1,3 +1,5 @@
+import 'toastify-js/src/toastify.css';
+
 import {
 	COULD_NAME,
 	PRESET_NAME,
@@ -8,6 +10,7 @@ import {
 } from '../../../../config/config';
 import { getUserInfo, updateUerInfo } from '../../../../api/config-user-json';
 
+import Toastify from 'toastify-js';
 import axios from 'axios';
 
 const UserEditLayout = () => {
@@ -64,6 +67,22 @@ const UserEditLayout = () => {
 			const birthday = document.querySelector('#birthday').value;
 			const descriptionInfo = document.querySelector('#descript-info').value;
 			const apply = document.querySelector('#apply').value;
+			if (
+				username.trim() === '' ||
+				github.trim() === '' ||
+				address.trim() === '' ||
+				birthday === '' ||
+				descriptionInfo.trim() === ''
+			) {
+				Toastify({
+					text: 'Bạn không được để trống',
+					style: {
+						background: 'linear-gradient(to right, #FF9966, #FF9966)',
+					},
+					duration: 3000,
+				}).showToast();
+				return false;
+			}
 			const data = {
 				email: info.email,
 				password: info.password,

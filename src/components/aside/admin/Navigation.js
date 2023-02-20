@@ -51,7 +51,8 @@ const Navigation = () => {
 		const logout = document.querySelector('.logout');
 		logout.addEventListener('click', (e) => {
 			localStorage.setItem('userInfo', JSON.stringify({}));
-			router.navigate('/admin/sign-in');
+			// router.navigate('/admin/sign-in');
+			window.location = '/admin/sign-in';
 		});
 	});
 	useEffect(() => {

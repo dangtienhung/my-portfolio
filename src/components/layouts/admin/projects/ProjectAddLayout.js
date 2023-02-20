@@ -1,5 +1,7 @@
 import 'toastify-js/src/toastify.css';
 
+import * as Yup from 'yup';
+
 import {
 	COULD_NAME,
 	PRESET_NAME,
@@ -12,6 +14,16 @@ import Toastify from 'toastify-js';
 import { addProject } from '../../../../api/config-project';
 import axios from 'axios';
 import { getAllCategories } from '../../../../api/config-categories';
+
+const schema = Yup.object({
+	username: Yup.string().required('Vui lòng nhập tên dự án'),
+	linkGithub: Yup.string().required('Vui lòng nhập link github'),
+	image: Yup.mixed().required('Vui lòng chọn ảnh'),
+	description: Yup.string().required('Vui lòng mô tả dự án của bạn'),
+	techonology: Yup.string().required(
+		'Công nghệ bạn sử dụng trong dự án này là gì'
+	),
+});
 
 const ProjectAddLayout = () => {
 	const [categories, setCategories] = useState([]);
@@ -29,7 +41,6 @@ const ProjectAddLayout = () => {
 	}, []);
 	useEffect(() => {
 		const form = document.querySelector('#form');
-		let image = document.querySelector('#image');
 		const uploadAvatar = async (files) => {
 			if (files) {
 				const folder_name = 'portfolio';
@@ -52,6 +63,7 @@ const ProjectAddLayout = () => {
 		};
 		form.addEventListener('submit', async (e) => {
 			e.preventDefault();
+			let image = document.querySelector('#image');
 			let nameProject = document.querySelector('#name').value;
 			let linkProject = document.querySelector('#link').value;
 			let dateStart = document.querySelector('#date-start').value;
@@ -62,6 +74,33 @@ const ProjectAddLayout = () => {
 			let description = document.querySelector('#description').value;
 			let linkWebsite = document.querySelector('#linkWebsite').value;
 			const urls = await uploadAvatar(image.files);
+			if (
+				nameProject.trim() === '' ||
+				linkProject.trim() === '' ||
+				linkWebsite.trim() === '' ||
+				dateStart.trim() === '' ||
+				dateEnd.trim() === '' ||
+				description.trim() === ''
+			) {
+				Toastify({
+					text: 'Bạn không được để trống',
+					style: {
+						background: 'linear-gradient(to right, #FF9966, #FF9966)',
+					},
+					duration: 3000,
+				}).showToast();
+				return false;
+			}
+			if (urls.length === 0) {
+				Toastify({
+					text: 'Bạn chưa có hình ảnh',
+					style: {
+						background: 'linear-gradient(to right, #FF9966, #FF9966)',
+					},
+					duration: 3000,
+				}).showToast();
+				return false;
+			}
 			const data = {
 				nameProject,
 				linkProject,
@@ -74,7 +113,7 @@ const ProjectAddLayout = () => {
 				fileUrl: urls,
 			};
 			console.log(
-				'🚀 ~ file: ProjectAddLayout.js:33 ~ form.addEventListener ~ data',
+				'🚀 ~ file: ProjectAddLayout.js:78 ~ form.addEventListener ~ data:',
 				data
 			);
 			(async () => {
@@ -103,7 +142,7 @@ const ProjectAddLayout = () => {
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>Tên dự án</label>
             <input
-              type="text" name="" id="name"
+              type="text" name="username" id="name"
               class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
               placeholder='Tên dự án'
             />
@@ -111,7 +150,7 @@ const ProjectAddLayout = () => {
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>link dự án</label>
             <input
-              type="text" name="" id="link"
+              type="text" name="linkGithub" id="link"
               class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
               placeholder='Link dự án'
             />
@@ -119,7 +158,7 @@ const ProjectAddLayout = () => {
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>link website</label>
             <input
-              type="text" name="" id="linkWebsite"
+              type="text" name="linkWebsite" id="linkWebsite"
               class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
               placeholder='Link Website'
             />
@@ -127,7 +166,7 @@ const ProjectAddLayout = () => {
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>Thời gian bắt đầu</label>
             <input
-              type="date" name="" id="date-start"
+              type="date" name="dateStart" id="date-start"
               class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
               placeholder='Thời gian'
             />
@@ -135,7 +174,7 @@ const ProjectAddLayout = () => {
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>Thời gian kết thúc</label>
             <input
-              type="date" name="" id="date-end"
+              type="date" name="dateEnd" id="date-end"
               class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
               placeholder='Thời gian'
             />
@@ -143,7 +182,7 @@ const ProjectAddLayout = () => {
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>Công nghệ sử dụng</label>
             <input
-              type="text" name="" id="techonology"
+              type="text" name="techonology" id="techonology"
               class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none"
               placeholder='Công nghệ sử dụng'
             />
@@ -152,7 +191,7 @@ const ProjectAddLayout = () => {
         <div class="grid xl:grid-cols-2 grid-cols-1 gap-x-4">
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>category</label>
-            <select name="" id="category" class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none">
+            <select name="category" id="category" class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none">
               ${categories
 								.map((category) => {
 									return /* html */ `
@@ -164,7 +203,7 @@ const ProjectAddLayout = () => {
           </div>
           <div class='flex flex-col mb-5'>
             <label for="" class='capitalize'>hình ảnh mô tả dự án</label>
-            <input type="file" name="" id="image" multiple class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none" placeholder='Tên dự án'>
+            <input type="file" name="image" id="image" multiple class="border border-gray-200 focus:border-blue-300 p-2 rounded bg-white outline-none" placeholder='Tên dự án'>
           </div>
         </div>
         <div class="grid grid-cols-1 mb-10">
