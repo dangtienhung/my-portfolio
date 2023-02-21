@@ -1,11 +1,6 @@
 import 'toastify-js/src/toastify.css';
 
-import {
-	avatarDefault,
-	router,
-	useEffect,
-	useState,
-} from '../../../config/config';
+import { avatarDefault, useEffect, useState } from '../../../config/config';
 
 import Toastify from 'toastify-js';
 

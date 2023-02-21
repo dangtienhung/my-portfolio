@@ -5,6 +5,7 @@ import {
 	Categories,
 	CategoryAdd,
 	CategoryEdit,
+	CommonPage,
 	ContactPage,
 	Dashboard,
 	EducationAdd,
@@ -73,5 +74,6 @@ router.on('/admin/category/edit/:id', (params) =>
 router.on('/admin/user/edit-password/:id', (params) =>
 	render(() => UserEditPasswordPage(params), app)
 );
+router.on('/admin/commons', () => render(CommonPage, app));
 
 router.resolve();

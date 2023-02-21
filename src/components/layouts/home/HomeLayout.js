@@ -39,7 +39,9 @@ const HomeLayout = () => {
                 <span class='text-load text-blue-500 capitalize relative'>hung</span>
               </p>
             </h2>
-            <span class='onscrool-text -translate-x-[150%] text-sm mt-4 whitespace-normal transition-all duration-1000'>Xin chào, tôi là Đặng Tiến Hưng, một sinh viên tại FPT Polytechnic, đã học chuyên ngành Lập trình Website trong 2 năm 4 tháng. <br/> Tôi đến từ Nam Định!</span>
+            <span class='onscrool-text -translate-x-[150%] text-sm mt-4 whitespace-normal transition-all duration-1000 truncate'>
+              ${userInfo?.descriptionInfo?.split('.')[0]}
+            </span>
             <a href='/assets/cv/Lap8.pdf' download class="download-cv onscrool-text duration-700 -translate-x-[150%] rounded-sm uppercase mt-12 max-w-[180px] border border-white p-2 flex justify-center items-center gap-x-2 bg-white text-black lg:opacity-30 hover:opacity-100 transition">
               <span>download cv</span>
               <img

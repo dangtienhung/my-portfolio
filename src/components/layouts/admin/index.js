@@ -14,3 +14,4 @@ export { default as CategoriesLayout } from './categories/CategoriesLayout';
 export { default as CategoryAddNew } from './categories/CategoryAddNew';
 export { default as CategoryEditLayout } from './categories/CategoryEditLayout';
 export { default as UserEditPassword } from './users/UserEditPassword';
+export { default as CommonLayout } from './common/CommonLayout';

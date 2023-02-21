@@ -24,6 +24,11 @@ const links = [
 		title: 'Categories',
 		to: '/admin/categories',
 	},
+	{
+		id: 8,
+		title: 'commons',
+		to: '/admin/commons',
+	},
 ];
 
 const AsideAdmin = () => {
@@ -34,7 +39,7 @@ const AsideAdmin = () => {
 			${links
 				.map(
 					(link) => `
-					<li><a href="${link.to}" class='p-2 hover:bg-blue-400 transition-all duration-200 inline-block w-full rounded-lg hover:text-white mb-4'>${link.title}</a></li>
+					<li><a href="${link.to}" class='p-2 hover:bg-blue-400 transition-all duration-200 inline-block w-full rounded-lg hover:text-white mb-4 capitalize'>${link.title}</a></li>
 					`
 				)
 				.join('')}

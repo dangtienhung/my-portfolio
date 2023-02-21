@@ -19,8 +19,10 @@ const Education = () => {
 			});
 		});
 	});
+	const [userInfo, setUserInfo] = useState([]);
 	const [educate, setEducate] = useState([]);
 	useEffect(() => {
+		setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
 		(async () => {
 			try {
 				const response = await getAll();
@@ -36,7 +38,9 @@ const Education = () => {
     <section class='px-[4%] py-20 min-h-screen' id='education'>
       <h4 class="onscrool-text -translate-x-[150%] uppercase text-sm text-gray-400 transition-all duration-1000">Education</h4>
       <h2 class='onscrool-text -translate-x-[150%] uppercase text-3xl font-medium mt-8 leading-10 transition-all duration-1000'>MY EDUCATION</h2>
-      <p class='onscrool-text -translate-x-[150%] mt-10 transition-all duration-1000'>Trong quá trình học tập tại FPT Polytechnic, tôi đã được trang bị những kiến thức chuyên sâu về lập trình website từ cơ bản đến nâng cao. Tôi đã tham gia nhiều dự án thực tế, giúp tôi rèn luyện kỹ năng làm việc nhóm và tư duy logic trong việc giải quyết vấn đề. Ngoài ra, nhờ giáo viên có kinh nghiệm và tâm huyết, tôi cũng đã nắm được những kỹ năng mềm như giao tiếp, quản lý thời gian và trách nhiệm trong công việc.</p>
+      <p class='onscrool-text -translate-x-[150%] mt-10 transition-all duration-1000'>
+        ${userInfo?.descriptionEducation || ''}
+      </p>
       <div class="mt-10 transition-all duration-500">
         ${educate.map((educa) => {
 					const date = {
