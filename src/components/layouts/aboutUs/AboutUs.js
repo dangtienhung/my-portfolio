@@ -21,7 +21,41 @@ const AboutUs = () => {
 					}</span>
         </p>
       </div>
-      <div class="xl:mt-16 mt-12 grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-12 onscrool-text -translate-x-[150%] transition-all duration-1000">
+      <div class='grid xl:grid-cols-2 grid-cols-1 gap-10 mt-10'>
+        <h2>
+          <span class='font-semibold'>Email</span>
+          <span class='font-normal'>${userInfo?.email}</span>
+        </h2>
+        <h2 class='capitalize font-semibold'>
+          <span class='font-semibold'>Phone:</span>
+          <span class='font-normal'>${userInfo?.phone}</span>
+        </h2>
+        <h2 class='capitalize font-semibold'>
+          <span class='font-semibold'>birthday:</span>
+          <span class='font-normal'>${userInfo?.birthday}</span>
+        </h2>
+        <h2 class='capitalize font-semibold'>
+          <span class='font-semibold'>Address:</span>
+          <span class='font-normal'>${userInfo?.address}</span>
+        </h2>
+        <h2 class='font-semibold'>
+          <span class='capitalize font-semibold'>facebook:</span>
+          <span class='font-normal'>
+            <a href="${userInfo?.facebook}">
+              ${userInfo?.facebook}
+            </a>
+          </span>
+        </h2>
+        <h2 class='font-semibold'>
+          <span class='capitalize font-semibold'>github:</span>
+          <span class='font-normal'>
+            <a href="${userInfo?.github}" target="_blank">
+              ${userInfo?.github}
+            </a>
+          </span>
+        </h2>
+      </div>
+      <div class="xl:mt-16 mt-12 grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-12 transition-all duration-1000">
         <div class='ct-about-skill !border-b-blue-600'>
           <a href="/skills" className="inline-block">
             <img src="/assets/images/idea.gif" alt="" class='h-10 w-10'/>

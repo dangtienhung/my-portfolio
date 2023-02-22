@@ -42,7 +42,7 @@ const HomeLayout = () => {
             <span class='onscrool-text -translate-x-[150%] text-sm mt-4 whitespace-normal transition-all duration-1000 truncate'>
               ${userInfo?.descriptionInfo?.split('.')[0]}
             </span>
-            <a href='/assets/cv/Lap8.pdf' download class="download-cv onscrool-text duration-700 -translate-x-[150%] rounded-sm uppercase mt-12 max-w-[180px] border border-white p-2 flex justify-center items-center gap-x-2 bg-white text-black lg:opacity-30 hover:opacity-100 transition">
+            <a href='/assets/cv/my-cv.pdf' download class="download-cv onscrool-text duration-700 -translate-x-[150%] rounded-sm uppercase mt-12 max-w-[180px] border border-white p-2 flex justify-center items-center gap-x-2 bg-white text-black lg:opacity-30 hover:opacity-100 transition">
               <span>download cv</span>
               <img
                 src="/assets/images/download.gif"
