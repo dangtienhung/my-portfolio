@@ -3,6 +3,7 @@ import 'toastify-js/src/toastify.css';
 import { getUserInfo, updateUerInfo } from '../../../../api/config-user-json';
 import { useEffect, useState } from '../../../../config/config';
 
+import Quill from 'quill';
 import Toastify from 'toastify-js';
 
 const CommonLayout = () => {
@@ -20,22 +21,22 @@ const CommonLayout = () => {
 		}
 	}, []);
 	useEffect(() => {
-		const btnHomePage = document.querySelector('.btn-homepage');
-		btnHomePage.addEventListener('click', async (e) => {
-			e.preventDefault();
-			const homePageValue = document.querySelector('#home-page').value;
-			const dataHome = { ...homepage, descriptionInfo: homePageValue };
-			localStorage.setItem('userInfo', JSON.stringify(dataHome));
-			try {
-				await updateUerInfo(dataHome);
-				Toastify({
-					text: 'Cập nhật thành công',
-					duration: 3000,
-				}).showToast();
-			} catch (error) {
-				console.log(error);
-			}
-		});
+		// const btnHomePage = document.querySelector('.btn-homepage');
+		// btnHomePage.addEventListener('click', async (e) => {
+		// 	e.preventDefault();
+		// 	const homePageValue = document.querySelector('#home-page').value;
+		// 	const dataHome = { ...homepage, descriptionInfo: homePageValue };
+		// 	localStorage.setItem('userInfo', JSON.stringify(dataHome));
+		// 	try {
+		// 		await updateUerInfo(dataHome);
+		// 		Toastify({
+		// 			text: 'Cập nhật thành công',
+		// 			duration: 3000,
+		// 		}).showToast();
+		// 	} catch (error) {
+		// 		console.log(error);
+		// 	}
+		// });
 		// educaiton
 		const btnEducation = document.querySelector('.btn-education');
 		btnEducation.addEventListener('click', async (e) => {
@@ -102,15 +103,34 @@ const CommonLayout = () => {
 			}
 		});
 	});
+	useEffect(() => {
+		let quill = new Quill('#home-page', {
+			theme: 'snow',
+		});
+		quill.setContents([{ insert: `${homepage.descriptionInfo}` }]);
+		// quill.setText(`${homepage.descriptionInfo}`);
+		const btnHomePage = document.querySelector('.btn-homepage');
+		btnHomePage.addEventListener('click', async (e) => {
+			e.preventDefault();
+			const descriptionInfo = quill.root.innerHTML;
+			const dataHome = { ...homepage, descriptionInfo };
+			localStorage.setItem('userInfo', JSON.stringify(dataHome));
+			try {
+				await updateUerInfo(dataHome);
+				Toastify({
+					text: 'Cập nhật thành công',
+					duration: 3000,
+				}).showToast();
+			} catch (error) {
+				console.log(error);
+			}
+		});
+	});
 	return /* html */ `
     <div class='flex-1 p-4 bg-lightMode rounded-lg shadow-lg overflow-hidden'>
       <div class="home-page mb-10">
-        <label for="" class='capitalize mb-4'>Home page</label>
-        <textarea
-          name="home-page" id="home-page" cols="30" rows="5"
-          placeholder='Giới thiệu bản thân'
-          class='outline-none w-full p-2 rounded border resize-none border-gray-200 focus:border-blue-400'
-        >${homepage.descriptionInfo}</textarea>
+        <label for="" class='capitalize !mb-4 text-2xl font-semibold'>Home page</label>
+        <div id="home-page"></div>
         <button class="btn-homepage outline-none bg-blue-400 text-white py-2 px-6 rounded">cập nhật thông tin</button>
       </div>
       <div class="education">
